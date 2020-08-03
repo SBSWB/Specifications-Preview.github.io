@@ -11,5 +11,6 @@ The XFS committee supplies this documentation on the latest XFS standard. This i
 - Cash Dispenser Class [HTML](pages/Dispenser.html) or [PDF](assets/XFS4IoT-Cash-Dispenser.pdf)
 - Cash Management Class [HTML](pages/Cash-Management.html) or [PDF](assets/XFS4IoT-Cash-Management.pdf)
 - Pinpad Class [HTML](pages/PIN-pad.html) or [PDF](assets/XFS4IoT-PIN-pad.pdf)
+- Pinpad Class Test [HTML](pages/Pinpad.html)
 
 
