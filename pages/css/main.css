@@ -268,7 +268,7 @@ html, body {
 .table__body__row--with-nested .table--nested {
   display: block;
   max-height: 0;
-  overflow: hidden;
+  overflow: auto;
   transition: max-height 1s ease;
   word-wrap: break-word;
 }
@@ -366,7 +366,7 @@ pre code {
 
 .hljs {
   display: block;
-  overflow-x: auto;
+  overflow: auto;
   padding: 0.5em;
   color: #abb2bf;
   background: #282c34;
