@@ -15,7 +15,9 @@ html, body {
   }
 
 .container{
-        width: 80%;
+        max-width: 80%;
+        padding: 10px 0;
+        overflow: auto;
         margin: 0 auto; /* Center the DIV horizontally */
     }
     .fixed-header, .fixed-footer{
@@ -118,6 +120,7 @@ html, body {
 
 .documentation {
   position: absolute;
+  word-wrap: break-word;
   max-width: 75%;
   overflow: auto;
   left: 220px;
