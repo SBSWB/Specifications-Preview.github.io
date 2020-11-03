@@ -118,11 +118,12 @@ html, body {
 
 .documentation {
   position: absolute;
+  max-width: 75%;
   overflow: auto;
-  left: 260px;
+  left: 220px;
   top: 150px;
   margin: 2% 0;
-  z-index: -1;
+  z-index: 0;
 }
 
 .info__terms-of-service__header {
