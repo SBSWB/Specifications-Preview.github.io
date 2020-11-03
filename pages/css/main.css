@@ -16,6 +16,7 @@ html, body {
   }
 
 .container{
+        object-fit: contain;
         max-width: 85%;
         padding: 10px 0;
         overflow: auto;
