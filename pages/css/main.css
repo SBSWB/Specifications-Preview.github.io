@@ -3,6 +3,7 @@
 }
 
 html, body {
+  z-index: 0;
   margin: 0;
   padding: 0;
   font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
@@ -11,7 +12,7 @@ html, body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-}
+  }
 
 .container{
         width: 80%;
@@ -24,6 +25,7 @@ html, body {
         padding: 10px 0;
         color: #fff;
         left: 300px;
+        z-index: 100;
     }
     .fixed-header{
         top: 0;
@@ -31,12 +33,13 @@ html, body {
     .fixed-footer{
         bottom: 0;
     }    
-    /* Some more styles to beutify this example */
+    /* Some more styles to beautify this example */
     nav a{
         color: #fff;
         text-decoration: none;
         padding: 7px 25px;
         display: inline-block;
+        z-index: 200;
     }
 
 .navigation {
@@ -48,6 +51,7 @@ html, body {
   background: #263238;
   overflow: auto;
   padding-bottom: 60px;
+  z-index: 200;
 }
 
 .navigation__logo {
@@ -114,9 +118,11 @@ html, body {
 
 .documentation {
   position: absolute;
-  left: 300px;
+  overflow: auto;
+  left: 260px;
   top: 150px;
-  margin: 5% 0;
+  margin: 2% 0;
+  z-index: -1;
 }
 
 .info__terms-of-service__header {
@@ -195,6 +201,7 @@ html, body {
   width: 100%;
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   border-spacing: 0;
+  z-index: 20;
 }
 .table__head__row {
   font-weight: 900;
@@ -278,10 +285,12 @@ html, body {
   display: inline-block;
   position: relative;
   width: 25px;
+  z-index: 0;
 }
 .tree-leaf::before {
   content: ' ';
   position: absolute;
+  z-index: 0;
   top: -15px;
   width: 10px;
   height: 10px;
