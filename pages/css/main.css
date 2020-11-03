@@ -16,7 +16,7 @@ html, body {
   }
 
 .container{
-        max-width: 80%;
+        max-width: 85%;
         padding: 10px 0;
         overflow: auto;
         margin: 0 auto; /* Center the DIV horizontally */
@@ -128,11 +128,11 @@ html, body {
 .documentation {
   position: absolute;
   word-wrap: break-word;
-  max-width: 75%;
+  max-width: 85%;
   overflow: auto;
   left: 220px;
   top: 150px;
-  margin: 2% 0;
+  margin: 5% 0;
   z-index: 0;
 }
 
@@ -217,7 +217,7 @@ html, body {
 }
 
 .table {
-  margin: 0 0 40px 0;
+  margin: 0 0 20px 0;
   width: 100%;
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   border-spacing: 0;
