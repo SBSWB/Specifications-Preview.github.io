@@ -3,6 +3,7 @@
 }
 
 html, body {
+  word-wrap: break-word;
   z-index: 0;
   margin: 0;
   padding: 0;
@@ -28,6 +29,7 @@ html, body {
         color: #fff;
         left: 300px;
         z-index: 100;
+        word-wrap: break-word;
     }
     .fixed-header{
         top: 0;
@@ -54,6 +56,7 @@ html, body {
   overflow: auto;
   padding-bottom: 60px;
   z-index: 200;
+  word-wrap: break-word;
 }
 
 .navigation__logo {
@@ -79,11 +82,13 @@ html, body {
   font-weight: bold;
   font-size: 18px;
   padding-left: 20px;
+  word-wrap: break-word;
 }
 
 .navigation__list {
   list-style: none;
   padding-left: 0;
+  word-wrap: break-word;
 }
 
 .navigation__list__item-text {
@@ -92,6 +97,7 @@ html, body {
   text-decoration: none;
   padding: 7px 7px 7px 20px;
   font-size: 14px;
+  word-wrap: break-word;
 }
 
 .navigation__list__item-text--link:hover {
@@ -107,6 +113,7 @@ html, body {
   width: 10px;
   height: 10px;
   border-radius: 3px;
+  word-wrap: break-word;
 }
 .navigation__list__item__topic-indicator--publish {
   background: #d4e157;
@@ -131,39 +138,47 @@ html, body {
 
 .info__terms-of-service__header {
   font-size: 20px;
+  word-wrap: break-word;
 }
 
 .info__server__enum-list {
   padding-left: 1em;
   margin: 0;
+  word-wrap: break-word;
 }
 
 .security__header {
   font-size: 20px;
+  word-wrap: break-word;
 }
 
 .section-header {
   border-bottom: #333 2px solid;
   padding-bottom: 10px;
   margin: 40px 0;
+  word-wrap: break-word;
 }
 
 .topic {
   margin-bottom: 60px;
+  word-wrap: break-word;
 }
 .topic__header {
   font-size: 20px;
+  word-wrap: break-word;
 }
 .topic__header__operation-badge {
   display: block;
   float: left;
   margin-top: -2px;
   margin-right: 10px;
+  word-wrap: break-word;
 }
 
 .operation--indented {
   padding-left: 15px;
   border-left: #263238 2px solid;
+  word-wrap: break-word;
 }
 
 .operation-badge {
@@ -173,6 +188,7 @@ html, body {
   padding: 3px 10px;
   text-align: center;
   text-transform: uppercase;
+  word-wrap: break-word;
 }
 
 .operation-badge--publish {
@@ -206,15 +222,18 @@ html, body {
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   border-spacing: 0;
   z-index: 20;
+  word-wrap: break-word;
 }
 .table__head__row {
   font-weight: 900;
   color: #ffffff;
   background: #00796b;
+  word-wrap: break-word;
 }
 .table__head__cell {
   padding: 6px 12px;
   text-align: left;
+  word-wrap: break-word;
 }
 .table__body__row {
   background: #f6f6f6;
@@ -225,9 +244,11 @@ html, body {
 .table__body__cell {
   padding: 6px 12px;
   vertical-align: top;
+  word-wrap: break-word;
 }
 .table__body__cell p {
   margin-top: 0;
+  word-wrap: break-word;
 }
 .table__expand {
   display: inline-block;
@@ -239,6 +260,7 @@ html, body {
   margin-right: 10px;
   transition: .5s ease;
   cursor: pointer;
+  word-wrap: break-word;
 }
 .table__expand--open {
   transform: rotate(90deg);
@@ -248,6 +270,7 @@ html, body {
   max-height: 0;
   overflow: hidden;
   transition: max-height 1s ease;
+  word-wrap: break-word;
 }
 .table__body__row--with-nested--expanded .table--nested {
   max-height: 300px;
@@ -258,6 +281,7 @@ html, body {
   box-shadow: none;
   border-spacing: 0;
   font-size: 13px;
+  word-wrap: break-word;
 }
 .table--nested__header {
   background-color: #37474f;
@@ -265,6 +289,7 @@ html, body {
   font-weight: bold;
   text-align: center;
   padding: 5px 0;
+  word-wrap: break-word;
 }
 .table--nested__head__row {
   background-color: #455a64;
@@ -284,12 +309,14 @@ html, body {
 .tree-space {
   display: inline-block;
   width: 15px;
+  word-wrap: break-word;
 }
 .tree-leaf {
   display: inline-block;
   position: relative;
   width: 25px;
   z-index: 0;
+  word-wrap: break-word;
 }
 .tree-leaf::before {
   content: ' ';
@@ -301,6 +328,7 @@ html, body {
   border-left: #aaa 1px solid;
   border-bottom: #aaa 1px solid;
   border-radius: 0 0 0 3px;
+  word-wrap: break-word;
 }
 
 .tags__tag {
@@ -308,17 +336,21 @@ html, body {
   background-color: #607d8b;
   padding: 3px 7px;
   border-radius: 5px;
+  word-wrap: break-word;
 }
 .tags__no-tags {
   font-style: italic;
+  word-wrap: break-word;
 }
 
 .message {
   margin-bottom: 60px;
+  word-wrap: break-word;
 }
 
 .schema {
   margin-bottom: 30px;
+  word-wrap: break-word;
 }
 
 code {
@@ -329,6 +361,7 @@ code {
 
 pre code {
   display: block;
+  word-wrap: break-word;
 }
 
 .hljs {
@@ -337,11 +370,13 @@ pre code {
   padding: 0.5em;
   color: #abb2bf;
   background: #282c34;
+  word-wrap: break-word;
 }
 
 .hljs-comment,.hljs-quote {
   color: #5c6370;
   font-style: italic;
+  word-wrap: break-word;
 }
 
 .hljs-doctag,.hljs-keyword,.hljs-formula {
@@ -374,12 +409,15 @@ pre code {
 
 .hljs-emphasis {
   font-style: italic;
+  word-wrap: break-word;
 }
 
 .hljs-strong {
   font-weight: bold;
+  word-wrap: break-word;
 }
 
 .hljs-link {
   text-decoration: underline;
+  word-wrap: break-word;
 }
