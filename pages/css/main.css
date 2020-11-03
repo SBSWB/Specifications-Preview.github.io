@@ -355,11 +355,13 @@ html, body {
 
 code {
   padding: 3px 5px;
+  overflow: auto;
   background-color: #eee;
   word-break: break-all;
 }
 
 pre code {
+  overflow: auto;
   display: block;
   word-wrap: break-word;
 }
