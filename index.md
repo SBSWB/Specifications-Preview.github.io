@@ -8,6 +8,7 @@ The XFS committee supplies this documentation on the latest XFS standard. This i
 
 ### Specifications
 - API - Service Discovery [HTML](pages/Service-Discovery.html) or [PDF](assets/XFS4IoT-Service-Discovery.pdf)
+- Card Reader Class [HTML](pages/CardReader.html) or [PDF](assets/XFS4IoT-Card-Reader.pdf)
 - Cash Dispenser Class [HTML](pages/Dispenser.html) or [PDF](assets/XFS4IoT-Cash-Dispenser.pdf)
 - Cash Management Class [HTML](pages/Cash-Management.html) or [PDF](assets/XFS4IoT-Cash-Management.pdf)
 - Pinpad Class [HTML](pages/EncryptingPINPad.html) or [PDF](assets/XFS4IoT-PINpad.pdf)
