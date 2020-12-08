@@ -18,9 +18,9 @@ html, body {
 .container{
         object-fit: contain;
         max-width: 85%;
-        padding: 10px 0;
+        padding: 10px 10px;
         overflow: auto;
-        margin: 0 auto; /* Center the DIV horizontally */
+        margin: auto auto auto auto; /* Center the DIV horizontally */
     }
     .fixed-header, .fixed-footer{
         width: 100%;
