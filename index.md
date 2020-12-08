@@ -16,5 +16,5 @@ The XFS committee supplies this documentation on the latest XFS standard. This i
 - Key Management Class [HTML](pages/KeyManIndex.html)
 - TTU Class [HTML](pages/TTU.html)
 
-![CEN disclaimer](/assets/CENCover.jpg "CEN disclaimer")
+![CEN disclaimer](assets/CENCover.jpg "CEN disclaimer")
 
