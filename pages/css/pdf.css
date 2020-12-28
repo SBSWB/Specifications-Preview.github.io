@@ -96,7 +96,8 @@ html, body {
   position: relative;
   color: #000000;
   top: 200px;
-  margin: 5% 0;
+  bottom: 20px;
+  margin: 5%;
   page-break-before: always;
 }
 
@@ -214,7 +215,7 @@ html, body {
 .table__body__row--with-nested .table--nested {
   display: block;
   max-height: 0;
-  overflow: hidden;
+  overflow: auto;
   transition: max-height 1s ease;
 }
 .table__body__row--with-nested--expanded .table--nested {
@@ -348,10 +349,4 @@ pre code {
 
 .hljs-link {
   text-decoration: underline;
-}
-
-@page {
-  @bottom {
-    content: "Page " counter(page) " of " counter(pages);
-  }
 }

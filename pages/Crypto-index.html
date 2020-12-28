@@ -1,0 +1,3210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  
+  <title>XFS4IOT Sample Messaging for Crypto interface Draft 0.0.4 documentation</title>
+  
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+  <div class="navigation">
+    
+    <h2 class="navigation__header">Introduction</h2>
+    <ul class="navigation__list">
+      <li class="navigation__list__item">
+        <a class="navigation__list__item-text navigation__list__item-text--link" href="#introduction">Basic
+          Information</a>
+      </li>
+    </ul>
+    
+
+    <h2 class="navigation__header">Documentation</h2>
+    <ul class="navigation__list">
+      
+      <li class="navigation__list__item">
+        <a class="navigation__list__item-text navigation__list__item-text--link" href="#section-Diagram1">Appendix-E (DUKPT)</a>
+      </li>
+      
+    </ul>
+
+    <h2 class="navigation__header">Commands</h2>
+    <ul class="navigation__list">
+      
+      <li class="navigation__list__item">
+        <a class="navigation__list__item-text navigation__list__item-text--link" href="#command-Crypto.GenerateRandom">Crypto.GenerateRandom</a>
+      </li>
+      
+      <li class="navigation__list__item">
+        <a class="navigation__list__item-text navigation__list__item-text--link" href="#command-Crypto.Crypt">Crypto.Crypt</a>
+      </li>
+      
+      <li class="navigation__list__item">
+        <a class="navigation__list__item-text navigation__list__item-text--link" href="#command-Crypto.Digest">Crypto.Digest</a>
+      </li>
+      
+    </ul>
+
+    <h2 class="navigation__header">Unsolicited Events</h2>
+    <ul class="navigation__list">
+      
+      <li class="navigation__list__item">
+        <a class="navigation__list__item-text navigation__list__item-text--link" href="#message-Crypto.IllegalKeyAccessEvent">Crypto.IllegalKeyAccessEvent</a>
+      </li>
+      
+    </ul>
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <h2 class="navigation__header">Events</h2>
+    <ul class="navigation__list">
+      
+      <li class="navigation__list__item">
+        <a class="navigation__list__item-text navigation__list__item-text--link" href="#message-Pinpad.DUKPTKSNEvent">Pinpad.DUKPTKSNEvent</a>
+      </li>
+      
+    </ul>
+  </div>
+
+  <div class="documentation">
+    <div class="container">
+      
+<div class="center-block p-8">
+  <a name="introduction"></a>
+  <h1>XFS4IOT Sample Messaging for Crypto interface Draft 0.0.4</h1>
+  <div class="leading-normal mb-4">
+    
+    
+  </div>
+
+  <div class="markdown">
+    
+  </div>
+
+  <div class="leading-normal mb-4">
+    
+  </div>
+</div>
+
+
+
+
+
+
+<div class="center-block p-8">
+  <a name="documentation"></a>
+  <h2>Documentation</h2>
+
+  
+  
+
+<div class="section">
+  <a name="section-Diagram1"></a>
+  <h2 class="section-header">Appendix-E (DUKPT)</h2>
+
+  <div class="markdown">
+    <table>
+<thead>
+<tr>
+<th style="text-align:left">Definitions and Abbreviations</th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">DUKPT</td>
+<td style="text-align:left">Derived Unique Key Per Transaction</td>
+</tr>
+<tr>
+<td style="text-align:left">BDK</td>
+<td style="text-align:left">Base Derivation Key</td>
+</tr>
+<tr>
+<td style="text-align:left">IPEK</td>
+<td style="text-align:left">Initial PIN Encryption Key</td>
+</tr>
+<tr>
+<td style="text-align:left">KSN</td>
+<td style="text-align:left">Key Serial Number.</td>
+</tr>
+<tr>
+<td style="text-align:left">TRSM</td>
+<td style="text-align:left">Tamper Resistant Security Module.</td>
+</tr>
+</tbody>
+</table>
+<p>For additional information see reference 45.</p>
+<h3>2.1	Default Key Name</h3>
+<hr>
+<p>The dukpt IPEK key is given a fixed name so multi-vendor applications can be developed without the need for vendor specific configuration tools.</p>
+<p>If dukpt is supported, this key must be included in the KeyDetail output.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Item Name</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">“dukptIpek”</td>
+<td style="text-align:left">This key represents the IPEK, the derived future keys stored during import of the IPEK and the variant per transaction keys (PIN and optionally data and MAC).</td>
+</tr>
+</tbody>
+</table>
+
+  </div>
+
+  
+</div>
+
+
+  
+
+</div>
+
+
+
+
+<h1>Commands</h1>
+
+
+  
+
+<a name="command-Crypto.GenerateRandom"></a>
+<div class="command">
+  <h2 class="section-header">
+    Crypto.GenerateRandom
+    
+  </h2>
+
+  
+    <h3>Description</h3>
+    <p>This command is used to generate a random number.</p>
+
+  
+
+  <h3>Command Message</h3>
+  
+
+
+
+
+  
+
+
+  <h4>Message Header</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">requestId <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Unique request identifier supplied by the client used to correlate the command with responses, events and completions.  For Unsolicited Events the field will be empty.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">type <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The message type, either command, response, event or completion.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">name <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The original message name, for example &quot;CardReader.Status&quot;</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  </tbody>
+</table>
+
+
+  
+
+
+  
+
+
+  <h4>Message Payload</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell"> </td>
+  <td class="table__body__cell">
+    
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"></td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">timeout </td>
+  <td class="table__body__cell">
+    integer
+  </td>
+  <td class="table__body__cell">0</td>
+  <td class="table__body__cell"><p>Timeout in milliseconds for the command to complete. If set to zero, the command will not timeout but can be cancelled.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  </tbody>
+</table>
+
+
+  
+
+<h5>Example Message (generated)</h5> 
+<pre class="hljs mb-4 border border-grey-darkest rounded"><code>{
+  "headers": {
+    "requestId": "b34800d0-9dd2-4d50-89ea-92d1b13df54b",
+    "type": "command",
+    "name": "string"
+  },
+  "payload": {
+    "timeout": "5000"
+  }
+}</code></pre>
+
+
+
+  <h3>Completion Message</h3>
+  
+
+
+
+
+  
+
+
+  <h4>Message Header</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">requestId <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Unique request identifier supplied by the client used to correlate the command with responses, events and completions.  For Unsolicited Events the field will be empty.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">type <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The message type, either command, response, event or completion.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">name <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The original message name, for example &quot;CardReader.Status&quot;</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  </tbody>
+</table>
+
+
+  
+
+
+  
+
+
+  <h4>Message Payload</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell"> </td>
+  <td class="table__body__cell">
+    
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"></td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">completionCode </td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>success if the commmand was successful otherwise error</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">errorDescription </td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>If not success, then this is optional vendor dependent information to provide additional information</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell"> </td>
+  <td class="table__body__cell">
+    
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"></td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">randomNumber <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The generated random number.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  </tbody>
+</table>
+
+
+  
+
+<h5>Example Message (generated)</h5> 
+<pre class="hljs mb-4 border border-grey-darkest rounded"><code>{
+  "headers": {
+    "requestId": "b34800d0-9dd2-4d50-89ea-92d1b13df54b",
+    "type": "command",
+    "name": "string"
+  },
+  "payload": {
+    "completionCode": "success",
+    "errorDescription": "string",
+    "randomNumber": "string"
+  }
+}</code></pre>
+
+
+
+  <h3>Event Messages</h3>
+  <ul>
+    
+  </ul>
+
+</div>
+
+
+
+  
+
+<a name="command-Crypto.Crypt"></a>
+<div class="command">
+  <h2 class="section-header">
+    Crypto.Crypt
+    
+  </h2>
+
+  
+    <h3>Description</h3>
+    <p>The input data is either encrypted or decrypted using the specified or selected encryption mode.
+The available modes are defined in the Capabilities command.
+This command cannot be used for random number generation. For random number generation, the GenerateRandam command should be used.
+This command cannot be used with externally encrypted keys, which can be specified using the EncKey parameter of the crypt command.
+This command can be used for Message Authentication Code generation and verification (i.e. macing).
+The input data is padded to the necessary length mandated by the encryption algorithm using the padding parameter.
+This command can be used for asymmetric signature generation and verification.
+This input data is padded to necessary length mandated by the signature algorithm using padding parameter.
+Applications can use an alternative padding method by pre-formatting the data passed and combining this with the standard padding method.
+The start value (or Initialization Vector) can be provided as input data to this command, or it can be imported via TR-31 prior to requesting this command and referenced by name.
+The start value and start value key are both optional parameters.</p>
+
+  
+
+  <h3>Command Message</h3>
+  
+
+
+
+
+  
+
+
+  <h4>Message Header</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">requestId <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Unique request identifier supplied by the client used to correlate the command with responses, events and completions.  For Unsolicited Events the field will be empty.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">type <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The message type, either command, response, event or completion.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">name <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The original message name, for example &quot;CardReader.Status&quot;</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  </tbody>
+</table>
+
+
+  
+
+
+  
+
+
+  <h4>Message Payload</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell"> </td>
+  <td class="table__body__cell">
+    
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"></td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">timeout </td>
+  <td class="table__body__cell">
+    integer
+  </td>
+  <td class="table__body__cell">0</td>
+  <td class="table__body__cell"><p>Timeout in milliseconds for the command to complete. If set to zero, the command will not timeout but can be cancelled.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell"> </td>
+  <td class="table__body__cell">
+    
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"></td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">key </td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Specifies the name of the stored key. This field is not required, if mode equals random.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">startValueKey </td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Specifies the name of the stored key used to decrypt the startValue to obtain the initialization vector.
+If this field is not set, startValue is used as the initialization vector.
+This field is not required, if mode equals random.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">startValue <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>DES and Triple DES initialization vector for cbc / cfb encryption and macing.
+This value is not required, if mode equals random.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">padding </td>
+  <td class="table__body__cell">
+    integer
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Specifies the padding character. The padding character is a full byte, e.g. 0xFF.
+This value is not required, if mode equals random. The valid range is 0x00 to 0xFF.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">compression </td>
+  <td class="table__body__cell">
+    boolean
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Specifies whether data is to be compressed (blanks removed) before building the mac.
+If compression is 0x00 no compression is selected, otherwise compression holds the representation of the blank character (e.g. 0x20 in ASCII or 0x40 in EBCDIC).
+This field is not required, if mode equals random.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">cryptData </td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The data to be encrypted, decrypted, or maced formatted in base64. This value is ignored, if mode equals random.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">verifyData </td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>If the modeOfUse is 'e', 'd', 'g', or 's', then this parameter can be omitted.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">cryptAttributes <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    object
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>This parameter specifies the encryption algorithm, cryptographic method, and mode to be used for this command.
+For a list of valid values see the Attributes capability field. The values specified must be compatible with the key identified by Key.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">cryptAttributes.keyUsage <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Specifies the key usage supported by the crypt command</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">cryptAttributes.algorithm <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Specifies the encryption algorithms supported by CRYPT command</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">cryptAttributes.modeOfUse <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Specifies the encryption mode supported by CRYPT command.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">cryptAttributes.cryptoMethod <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Specifies the cryptographic method supported by the CRYPT command.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  </tbody>
+</table>
+
+
+  
+
+<h5>Example Message (generated)</h5> 
+<pre class="hljs mb-4 border border-grey-darkest rounded"><code>{
+  "headers": {
+    "requestId": "b34800d0-9dd2-4d50-89ea-92d1b13df54b",
+    "type": "command",
+    "name": "string"
+  },
+  "payload": {
+    "timeout": "5000",
+    "key": "string",
+    "startValueKey": "string",
+    "startValue": "string",
+    "padding": 0,
+    "compression": true,
+    "cryptData": "string",
+    "verifyData": "string",
+    "cryptAttributes": {
+      "keyUsage": "d0",
+      "algorithm": "a",
+      "modeOfUse": "d",
+      "cryptoMethod": "ecb"
+    }
+  }
+}</code></pre>
+
+
+
+  <h3>Completion Message</h3>
+  
+
+
+
+
+  
+
+
+  <h4>Message Header</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">requestId <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Unique request identifier supplied by the client used to correlate the command with responses, events and completions.  For Unsolicited Events the field will be empty.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">type <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The message type, either command, response, event or completion.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">name <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The original message name, for example &quot;CardReader.Status&quot;</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  </tbody>
+</table>
+
+
+  
+
+
+  
+
+
+  <h4>Message Payload</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell"> </td>
+  <td class="table__body__cell">
+    
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"></td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">completionCode </td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>success if the commmand was successful otherwise error</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">errorDescription </td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>If not success, then this is optional vendor dependent information to provide additional information</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell"> </td>
+  <td class="table__body__cell">
+    
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"></td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">cryptData <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The encrypted or decrypted data, mac value or signature.
+This parameter will be NULL if the cryptAttributes.modeOfUse is 'V'.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  </tbody>
+</table>
+
+
+  
+
+<h5>Example Message (generated)</h5> 
+<pre class="hljs mb-4 border border-grey-darkest rounded"><code>{
+  "headers": {
+    "requestId": "b34800d0-9dd2-4d50-89ea-92d1b13df54b",
+    "type": "command",
+    "name": "string"
+  },
+  "payload": {
+    "completionCode": "success",
+    "errorDescription": "string",
+    "cryptData": "string"
+  }
+}</code></pre>
+
+
+
+  <h3>Event Messages</h3>
+  <ul>
+    
+    <li><a href="#message-Pinpad.DUKPTKSNEvent">Pinpad.DUKPTKSNEvent</a></li>
+    
+  </ul>
+
+</div>
+
+
+
+  
+
+<a name="command-Crypto.Digest"></a>
+<div class="command">
+  <h2 class="section-header">
+    Crypto.Digest
+    
+  </h2>
+
+  
+    <h3>Description</h3>
+    <p>This command is used to compute a hash code on a stream of data using the specified hash algorithm.
+This command can be used to verify emv static and dynamic data.</p>
+
+  
+
+  <h3>Command Message</h3>
+  
+
+
+
+
+  
+
+
+  <h4>Message Header</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">requestId <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Unique request identifier supplied by the client used to correlate the command with responses, events and completions.  For Unsolicited Events the field will be empty.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">type <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The message type, either command, response, event or completion.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">name <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The original message name, for example &quot;CardReader.Status&quot;</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  </tbody>
+</table>
+
+
+  
+
+
+  
+
+
+  <h4>Message Payload</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell"> </td>
+  <td class="table__body__cell">
+    
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"></td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">timeout </td>
+  <td class="table__body__cell">
+    integer
+  </td>
+  <td class="table__body__cell">0</td>
+  <td class="table__body__cell"><p>Timeout in milliseconds for the command to complete. If set to zero, the command will not timeout but can be cancelled.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell"> </td>
+  <td class="table__body__cell">
+    
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"></td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">hashAlgorithm <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Specifies which hash algorithm should be used to calculate the hash.
+See the Capabilities section for valid algorithms.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">digestInput <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Contains the length and the data to be hashed formatted in base64.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  </tbody>
+</table>
+
+
+  
+
+<h5>Example Message (generated)</h5> 
+<pre class="hljs mb-4 border border-grey-darkest rounded"><code>{
+  "headers": {
+    "requestId": "b34800d0-9dd2-4d50-89ea-92d1b13df54b",
+    "type": "command",
+    "name": "string"
+  },
+  "payload": {
+    "timeout": "5000",
+    "hashAlgorithm": "sha1",
+    "digestInput": "string"
+  }
+}</code></pre>
+
+
+
+  <h3>Completion Message</h3>
+  
+
+
+
+
+  
+
+
+  <h4>Message Header</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">requestId <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Unique request identifier supplied by the client used to correlate the command with responses, events and completions.  For Unsolicited Events the field will be empty.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">type <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The message type, either command, response, event or completion.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">name <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The original message name, for example &quot;CardReader.Status&quot;</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  </tbody>
+</table>
+
+
+  
+
+
+  
+
+
+  <h4>Message Payload</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell"> </td>
+  <td class="table__body__cell">
+    
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"></td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">completionCode </td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>success if the commmand was successful otherwise error</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">errorDescription </td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>If not success, then this is optional vendor dependent information to provide additional information</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell"> </td>
+  <td class="table__body__cell">
+    
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"></td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">digestOutput <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Contains the length and the data containing the calculated has.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  </tbody>
+</table>
+
+
+  
+
+<h5>Example Message (generated)</h5> 
+<pre class="hljs mb-4 border border-grey-darkest rounded"><code>{
+  "headers": {
+    "requestId": "b34800d0-9dd2-4d50-89ea-92d1b13df54b",
+    "type": "command",
+    "name": "string"
+  },
+  "payload": {
+    "completionCode": "success",
+    "errorDescription": "string",
+    "digestOutput": "string"
+  }
+}</code></pre>
+
+
+
+  <h3>Event Messages</h3>
+  <ul>
+    
+  </ul>
+
+</div>
+
+
+
+
+
+
+<h1>Unsolicited Events</h1>
+
+
+  <a name="message-Crypto.IllegalKeyAccessEvent"></a>
+  <div class="unsolicited">
+    <h2 class="section-header">
+      Crypto.IllegalKeyAccessEvent
+      
+    </h2>
+
+    
+    <h3>Description</h3>
+    
+        
+    
+
+
+  <p>This event specifies that an error occurred accessing an encryption key.
+Possible situations for generating this event are listed in the description of lErrorCode.</p>
+
+
+
+
+  
+
+
+  <h4>Message Header</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">requestId <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Unique request identifier supplied by the client used to correlate the command with responses, events and completions.  For Unsolicited Events the field will be empty.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">type <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The message type, either command, response, event or completion.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">name <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The original message name, for example &quot;CardReader.Status&quot;</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  </tbody>
+</table>
+
+
+  
+
+
+  
+
+
+  <h4>Message Payload</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">keyName <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Specifies the name of the key that caused the error.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">errorCode <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Specifies the type of illegal key access that occurred</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  </tbody>
+</table>
+
+
+  
+
+<h5>Example Message (generated)</h5> 
+<pre class="hljs mb-4 border border-grey-darkest rounded"><code>{
+  "headers": {
+    "requestId": "b34800d0-9dd2-4d50-89ea-92d1b13df54b",
+    "type": "command",
+    "name": "string"
+  },
+  "payload": {
+    "keyName": "string",
+    "errorCode": "keynotfound"
+  }
+}</code></pre>
+
+  
+  </div>
+
+
+
+
+
+
+
+   
+
+  
+    
+      
+        
+      
+    
+   
+
+   
+
+
+<h1>Events</h1>
+
+
+  <a name="message-Pinpad.DUKPTKSNEvent"></a>
+  <div class="unsolicited">
+    <h2 class="section-header">
+      Pinpad.DUKPTKSNEvent
+      
+    </h2>
+
+    
+    <h3>Description</h3>
+    
+
+    
+
+
+  <p>This event sends the DUKPT KSN of the key used in the command. The receiving TRSM uses this to derive the key from the BDK.</p>
+
+
+
+
+  
+
+
+  <h4>Message Header</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">requestId <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Unique request identifier supplied by the client used to correlate the command with responses, events and completions.  For Unsolicited Events the field will be empty.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">type <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The message type, either command, response, event or completion.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">name <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The original message name, for example &quot;CardReader.Status&quot;</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  </tbody>
+</table>
+
+
+  
+
+
+  
+
+
+  <h4>Message Payload</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">key <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Specifies the name of the DUKPT Key derivation key.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">ksn <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>structure that contains the KSN formatted in base64.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  </tbody>
+</table>
+
+
+  
+
+<h5>Example Message (generated)</h5> 
+<pre class="hljs mb-4 border border-grey-darkest rounded"><code>{
+  "headers": {
+    "requestId": "b34800d0-9dd2-4d50-89ea-92d1b13df54b",
+    "type": "command",
+    "name": "string"
+  },
+  "payload": {
+    "key": "string",
+    "ksn": "string"
+  }
+}</code></pre>
+
+  
+  </div>
+
+
+
+
+    </div>
+  </div>
+
+  <div class="fixed-footer">
+    <div class="container">
+      <h5>XFS4IoT specification - Preview version 0.3. Next preview - Q1 2021. Note: work-in-progress. Use at your own
+        risk.</h5>
+      <h6>All rights of exploitation in any form and by any means reserved worldwide for CEN national members.</h6>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"
+    type="application/javascript"></script>
+  <script type="application/javascript">
+    function highlightCode() {
+      var blocks = document.querySelectorAll('.hljs code');
+
+      for (var i = 0; i < blocks.length; i++) {
+        hljs.highlightBlock(blocks[i]);
+      }
+    }
+
+    window.addEventListener('load', highlightCode);
+  </script>
+</body>
+
+</html>

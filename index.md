@@ -3,18 +3,23 @@ Title: XFS4IoT specification preview
 ---
 The XFS committee supplies this documentation on the latest XFS standard. This information is freely distributed.
 
-#### Preview version 0.2. Next preview - Dec 2020. Note: work-in-progress. Subject to change without warning. Use at your own risk.
+#### Preview version 0.3. Next preview - Q1 2021. Note: work-in-progress. Subject to change without warning. Use at your own risk.
 #### All rights of exploitation in any form and by any means reserved worldwide for CEN national Members.
 
 ### Specifications
-- API - Service Discovery [HTML](pages/Service-Discovery.html)
-- Card Reader Class [HTML](pages/CardReader.html)
-- Cash Dispenser Class [HTML](pages/Dispenser.html)
-- Cash Management Class [HTML](pages/Cash-Management.html)
-- Keyboard Class [HTML](pages/KeyboardIndex.html)
-- Pinpad Class [HTML](pages/PINPadIndex.html)
-- Key Management Class [HTML](pages/KeyManIndex.html)
-- TTU Class [HTML](pages/TTU.html)
+- [API](pages/API-index.html)
+- [Card Reader Class](pages/CR-index.html)
+- [Cash Acceptor Class](pages/CA-index.html)
+- [Cash Dispenser Class](pages/Dispenser-index.html)
+- [Cash Management Class](pages/CM-index.html)
+- [Common Class](pages/Common-index.html)
+- [Cryptography Class](pages/Crypto-index.html)
+- [Key Management Class](pages/KeyManagement-index.html)
+- [Keyboard Class](pages/Keyboard-index.html)
+- [PIN Pad Class](pages/PIN-index.html)
+- [Text Terminal Class](pages/TTU-index.html)
+
+[Click here to download the full PDF](assets/XFS4IoT Specification 0.3.pdf)
 
 ![CEN disclaimer](assets/CENCover.jpg)
 

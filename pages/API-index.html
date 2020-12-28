@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  
+  <title>XFS4IOT API Draft 0.0.1 documentation</title>
+  
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+  <div class="navigation">
+    
+    <h2 class="navigation__header">Introduction</h2>
+    <ul class="navigation__list">
+      <li class="navigation__list__item">
+        <a class="navigation__list__item-text navigation__list__item-text--link" href="#introduction">Basic
+          Information</a>
+      </li>
+    </ul>
+    
+
+    <h2 class="navigation__header">Documentation</h2>
+    <ul class="navigation__list">
+      
+      <li class="navigation__list__item">
+        <a class="navigation__list__item-text navigation__list__item-text--link" href="#section-ServiceDiscovery">Service Discovery</a>
+      </li>
+      
+      <li class="navigation__list__item">
+        <a class="navigation__list__item-text navigation__list__item-text--link" href="#section-Messages">Message Definition</a>
+      </li>
+      
+      <li class="navigation__list__item">
+        <a class="navigation__list__item-text navigation__list__item-text--link" href="#section-E2ESecurity">End to End security overview</a>
+      </li>
+      
+    </ul>
+
+    <h2 class="navigation__header">Commands</h2>
+    <ul class="navigation__list">
+      
+      <li class="navigation__list__item">
+        <a class="navigation__list__item-text navigation__list__item-text--link" href="#command-Common.GetServices">Common.GetServices</a>
+      </li>
+      
+    </ul>
+
+    <h2 class="navigation__header">Unsolicited Events</h2>
+    <ul class="navigation__list">
+      
+    </ul>
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <h2 class="navigation__header">Events</h2>
+    <ul class="navigation__list">
+      
+      <li class="navigation__list__item">
+        <a class="navigation__list__item-text navigation__list__item-text--link" href="#message-Common.ServiceDetailEvent">Common.ServiceDetailEvent</a>
+      </li>
+      
+    </ul>
+  </div>
+
+  <div class="documentation">
+    <div class="container">
+      
+<div class="center-block p-8">
+  <a name="introduction"></a>
+  <h1>XFS4IOT API Draft 0.0.1</h1>
+  <div class="leading-normal mb-4">
+    
+    
+  </div>
+
+  <div class="markdown">
+    <pre><code>This defines the XFS4IoT API including but not limited to:
+
+* Service Discovery
+* Message Definition
+* Security
+</code></pre>
+
+  </div>
+
+  <div class="leading-normal mb-4">
+    
+  </div>
+</div>
+
+
+
+
+
+
+<div class="center-block p-8">
+  <a name="documentation"></a>
+  <h2>Documentation</h2>
+
+  
+  
+
+<div class="section">
+  <a name="section-ServiceDiscovery"></a>
+  <h2 class="section-header">Service Discovery</h2>
+
+  <div class="markdown">
+    <h1>Service Discovery</h1>
+<h2>Introduction</h2>
+<p>Multiple services can be supplied by multiple vendors. This standard doesn't require
+coordination between these different organization, or between the
+service publishers and the service client. It is possible to operate a
+system with components from multiple hardware vendors, and with third
+party applications, without the prior knowledge of any party.</p>
+<p>This specification covers an environment using WebSockets to communicate
+between services and applications, either on a single machine or across a
+network.</p>
+<p>This section covers both the process for publishing a service such that
+it can be discovered, and the discovery process used by the service
+client.</p>
+<p>There is also a clear definition of responsibility for each component,
+including when there are dependencies between components. There are no
+shared components required to coordinate the system.</p>
+<p>The underlying network can use any protocol that supports WebSockets such as
+IPv4 or IPv6. Nothing in this document requires any particular
+underlying protocol.</p>
+<p>This document uses CAN, WILL, MUST, SHOULD etc. in the normal ways to
+distinguish between requirements, recommendations, permissions and
+possibilities. See
+<a href="https://www.iso.org/files/live/sites/isoorg/files/archive/pdf/en/how-to-write-standards.pdf">https://www.iso.org/files/live/sites/isoorg/files/archive/pdf/en/how-to-write-standards.pdf</a></p>
+<p>Requirements of this spec will be formated as follows:</p>
+<blockquote>
+<p>This is an example requirement</p>
+</blockquote>
+<p>All other text is commentary used to illustrate the reasoning of the requirements. Where there is any conflict the
+requirement text always takes priority.</p>
+<h2>Overview</h2>
+<p>In this standard there are two types of &quot;end-point&quot;; publisher and service.
+Each end-point, of either type, is published by a single software/hardware vendor.
+A publisher end-point is used for service discovery, to discover service
+end-points. A single service end-point can expose multiple &quot;services&quot;,
+where each service typically represents a single piece of hardware. A
+single machine (or a single IP address) may expose multiple publisher and
+service end-points from different vendors. A &quot;client&quot; application may consume multiple
+services from multiple service end-points on the same machine, or across
+multiple machines.</p>
+<p>On startup of the machine, any software services attempt to claim
+access to individual network ports using the underlying operating system
+mechanism. Ports are claimed sequentially from a known
+sequence. Each port becomes an end-point that can publish multiple
+services from a single vendor.</p>
+<p>A client application will attempt to connect to each port on a machine
+in the known sequence to get a list of all active publisher end-points. For each
+publisher end-point it then exchanges JSON messages across WebSockets with URIs
+using a known format to recover a list of services published by that end-point.
+Once it has a full list of services it can use WebSocket
+connections to communicate with each service to perform whichever
+actions are required.</p>
+<h2>Machine Identification</h2>
+<p>Machines publishing services are identified by URIs. Machines exposing
+end-points can be identified by an IP address or by a DNS name.</p>
+<p>Either the IP address or DNS name for a machine must be known by the
+client for the client to connect. This would probably be a configuration
+setting for the application and would need to be known by the
+organization setting up the application, but this configuration is
+outside the scope of this document.</p>
+<h2>Network Protocol</h2>
+<p>TLS security will be used to secure network connections. The only
+exception will be when the network connection between the client and
+service can be physically secured because they are both inside the same
+cabinet. In that case it will be possible to use clear communication
+without TLS encryption.</p>
+<blockquote>
+<p>The publisher will publish all WebSocket services protected by TLS
+encryption. This will be identified by the wss:// protocol specifier.</p>
+<p>The publisher may publish WebSocket services without TLS encryption, as
+a clear WebSocket connection, but only if the physical connection
+between the service and the client is physically protected. It is up to the
+hardware manufaturer to ensure this physical protection is sufficient. This
+unsecured connection will be identified by the ws:// protocol specifier.</p>
+<p>Where TLS is used, the service will be protected by a mutually trusted
+server side certificate as part of the TLS protocol. This complete
+certificate chain must be mutually trusted by the client and service.</p>
+</blockquote>
+<p>Establishing and managing the certificates between the service and the
+client is outside of the scope of this spec but trust must be in place.
+This might be achieved using a public third party certificate authority
+that issues TLS certificates. Alternatively it might be achieved using a
+bank's own internal CA. It shouldn't depend on a private CA or
+certificates issued by a vendor, which might limit access to the
+service.</p>
+<blockquote>
+<p>A WSS connections with invalid certificates will be invalid and will be
+rejected by both the client and the service.</p>
+</blockquote>
+<h2>URI Format</h2>
+<blockquote>
+<p>Communication with service publishers and services will be through
+distinct URIs which will use the following format</p>
+<p><code>wss://machinename:portnumber/xfs4iot/v1.0/servicename</code></p>
+</blockquote>
+<p>This consists of the following parts:</p>
+<p><strong><code>wss://</code> or <code>ws://</code></strong><br>
+The protocol id for secure WebSockets. This should be wss:// for secure connections.
+An insecure ws:// connection can be used when the connection is physically secured,
+inside an ATM enclosure.</p>
+<p><strong>machinename</strong><br>
+The identification of the machine publishing end-points. This can be an IP address or
+DNS name.</p>
+<p><strong>portnumber</strong><br>
+The port number discovered through the initial service discovery process</p>
+<p><strong>XFS4IoT</strong><br>
+A literal string. The inclusion of this part identifies standard XFS4IoT
+services published on this URI. It allows the possibility of a single vendor
+publishing standard and non-standard proprietary services on the same port.
+Any standard service URI will start with this string. Any non-standard
+service's URI must not start with this string.</p>
+<p><strong>v1.0</strong><br>
+The version of the XFS4IoT specification being used by this service. This will be updated in
+future versions of the specification and allows support for multiple versions of the
+specification on the same machine and end-point.</p>
+<p>Note that most future changes to the XFS4IoT specification will be done in a non-breaking,
+backwards and forwards compatible way. For example, optional fields will be added
+to JSON messages when required. This means that changes to the version field of the
+URI will be very rare. It will only be changed if there is a breaking, incompatible
+change or a fundamental change to the API. Because of this there won't be any need
+for complex version negotiation between the client and the service. The
+client will simply attempt to open the version of the API that it supports.</p>
+<p><strong>ServiceName</strong><br>
+This will be included in the URI to allow different services to be identified
+on the same port. Services will normally match individual devices. The exact service name is
+discovered during service discovery and is vendor dependent. The format of
+the service name shouldn't be assumed. The only URI that doesn't include a service
+name is the service discovery URI.</p>
+<p>For example, a service discovery URI might be;</p>
+<ul>
+<li>wss://terminal321.atmnetwork.corporatenet:443/xfs4iot/v1.0</li>
+<li>wss://192.168.21.43:5848/xfs4iot/v1.0</li>
+</ul>
+<p>Service URI might be;</p>
+<ul>
+<li>wss://terminal321.atmnetwork.corporatenet:443/xfs4iot/v1.0/maincashdispenser</li>
+<li>wss://192.168.21.43:5848/xfs4iot/v1.0/cardreader1</li>
+</ul>
+<blockquote>
+<p>The URI will be case sensitive. The URI will be lower case.</p>
+</blockquote>
+<h2>Service Publishing</h2>
+<p>Service publishers will negotiate access to resources and publish
+services using the following process.</p>
+<h3>Port Sequence</h3>
+<blockquote>
+<p>Services will be published on a sequence of IP ports consisting of two
+ranges consisting of the port 80 and 443 followed by the ports 5846 to
+5856 (inclusive.) Hence the full sequence of ports will be 12 ports as,</p>
+<p>80 or 443, 5846, 5847, 5848, ... 5855, 5856</p>
+</blockquote>
+<blockquote>
+<p>Port 80 will only be used with HTTP/WS. Port 443 will only be used with
+HTTPS/WSS. All other ports may be used with either or both HTTP/WS and
+HTTPS/WSS.</p>
+</blockquote>
+<p>Port 80 and 443 are the standard ports for HTTP and HTTPS and have the
+advantage that they are likely to be open on firewalls. The correct port
+will be used to match the protocol - 80 for HTTP/WS and 443 for
+HTTPS/WSS. Other ports are flexible and can be used for either protocol
+by the Service Publisher.</p>
+<p>The port range 5846-5856 is semi-randomly selected in the 'user' range of
+the port space as defined by ICANN/IANA. This range is currently
+unassigned by IANA.</p>
+<h3>Free End-point Port Discovery</h3>
+<blockquote>
+<p>On startup each service publisher must attempt to connect to the first
+port in the port sequence. It will use the underlying OS and network
+stack to attempt to bind to this port.</p>
+</blockquote>
+<blockquote>
+<p>All network access must go through the normal underlying OS mechanism.
+One service publisher must not block another publisher from accessing the network.</p>
+</blockquote>
+<blockquote>
+<p>If the underlying OS reports that the port is already in use the service
+publisher will repeat the same process with the next port in the port
+sequence. This will be repeated until a port is successfully bound to,
+or all ports in the sequence have been tried.</p>
+</blockquote>
+<blockquote>
+<p>If no available port can be found the service publisher will have failed
+to start. How this failure is handled by the service publisher is
+undefined.</p>
+</blockquote>
+<p>It's important that a single organisation doesn't use up multiple ports,
+since this could lead to all the ports being blocked so that other publishers
+can't get a free port.</p>
+<blockquote>
+<p>Any single organisation will publish all services on a single port,
+determined dynamically as above.</p>
+</blockquote>
+<p><strong>Note</strong>: <em>A service publisher will only fail to find a free port if more
+than 12 different hardware vendors are attempting to publish services from
+the same machine. This should be unusual.</em></p>
+<h3>Handling Incoming Connections</h3>
+<blockquote>
+<p>Once a service publisher has successfully bound to a port it must handle
+connection attempts. It will accept all connections from any clients
+without filtering attempts. Security around connections will be handled
+after a connection has been established.</p>
+</blockquote>
+<p><strong>Note</strong>: <em>This document does not cover
+restrictions on connections to services or managing permissions for
+connections, such as limiting connections to certain machines or
+sub-nets. This would normally be under the control of the machine deployer
+and can be controlled through normal firewall settings and network
+configuration.</em></p>
+<blockquote>
+<p>Incoming connection attempts will specify a specific URI using the
+normal WebSocket process. The service publisher will allow connections
+to valid URIs as defined in this spec and track which URI each
+connection was made to.</p>
+</blockquote>
+<blockquote>
+<p>The initial connection will be to the URI
+wss://machinename:port/xfs4iot/v1.0. This connection will then be used to
+list/discover individual services using the process outlined below
+(<a href="#Service-End-point-discovery">Service discovery</a>).</p>
+</blockquote>
+<h2>Client</h2>
+<p>A client application must be able to discover and open a connection to
+each service that it will use. It does this in two steps; firstly,
+through publisher end-point discovery, then through service discovery for each
+service end-point. It will do this through the following process.</p>
+<h3>Publisher End-point Discovery</h3>
+<blockquote>
+<p>The client will enumerate end-points by attempting to open a WebSocket
+connection to the following URL on each port in the port sequence. (See
+<a href="#Port-sequence">Port sequence</a>).<br>
+<code>wss://machinename:port/xfs4iot/v1.0</code></p>
+</blockquote>
+<blockquote>
+<p>The client will continue to enumerate publisher end-points by repeating for each
+port number in the port sequence until all ports have been tried.</p>
+</blockquote>
+<blockquote>
+<p>The client will also start <a href="#Service-End-point-discovery">service discovery</a>
+on the open connection. There is no requirement for the order of opening ports and
+discovering services. All ports connections may be created first
+followed by service discover, or port enumeration and service discovery
+may continue in parallel.</p>
+</blockquote>
+<blockquote>
+<p>If the connection attempt to any port fails then the application will
+attempt error handling for network issues, machine powered off etc. The
+details of error handling are left up to the application.</p>
+</blockquote>
+<h2>Service End-point Discovery</h2>
+<blockquote>
+<p><em>Once a connection has been established between the client and each
+publisher end-point, the client will discover the services published by
+sending a service discovery command and receiving
+events in the usual way.</em></p>
+</blockquote>
+<blockquote>
+<p>The only command sent to the publisher end-point will be &quot;Common.GetServices&quot;.</p>
+</blockquote>
+<pre><code class="language-JSON">{
+    &quot;header&quot;: {
+        &quot;type&quot;: &quot;command&quot;,
+        &quot;name&quot;: &quot;Common.GetServices&quot;,
+        &quot;requestId&quot;: &quot;123&quot;
+    },
+    &quot;payload&quot;: {
+    }
+}
+</code></pre>
+<blockquote>
+<p>The end-point will acknowledge the command in the normal way.</p>
+</blockquote>
+<blockquote>
+<p>The command will be followed by zero or more events. The command will
+complete with a completion event, in the normal way. Each event,
+and the completion event will contain the following fields:</p>
+</blockquote>
+<pre><code class="language-json">{
+    &quot;header&quot; : {
+        &quot;type&quot;: &quot;completion&quot;,
+        &quot;name&quot;: &quot;Common.GetServices&quot;,
+        &quot;requestId&quot;: &quot;123&quot;
+    },
+    &quot;payload&quot; : {
+        &quot;vendorName&quot;: &quot;&lt;Name of hardware/software vendor&gt;&quot;,
+        &quot;services&quot;:
+        [
+            {
+                &quot;serviceURI&quot;: &quot;wss://machinename:port/xfs4iot/v1.0/&lt;servicename1&gt;&quot;,
+            },
+            {
+                &quot;serviceURI&quot;: &quot;wss://machinename:port/xfs4iot/v1.0/&lt;servicename2&gt;&quot;,
+            }
+        ]
+    }
+}
+</code></pre>
+<blockquote>
+<p>The service end-point URI will be returned as serviceURI.</p>
+</blockquote>
+<blockquote>
+<p>A secure wss:// protocol URI will be returned whenever possible.</p>
+</blockquote>
+<blockquote>
+<p>An insecure ws:// protocol URI may be returned instead. If an insecure ws://
+protocol is used then the hardware vendor will be responsible for ensuring
+the security of the connection.</p>
+</blockquote>
+<p>Much of the security of the XFS4IoT specification is based around TLS encryption.
+Using an unencrypted ws:// protocol will have a negative impact on that security,
+so as far as possible a wss:// should always be used.</p>
+<p>If an unencrypted ws:// connection is used then alternative methods should be
+used to keep the connection secure, prehaps by physically securing the connection.</p>
+<blockquote>
+<p>The Publisher service will send an event to report on every URI. A
+single event may report on one or more URI. URI will not be repeated
+between events, so each URI will be reported exactly once.</p>
+</blockquote>
+<p>A publisher service may be designed to send one URI per event, or it may
+group URI together into a smaller number of events. The publisher should
+try and send events to report on each URI as soon as each URI is known.
+It's possible a publisher will know the complete set of URI when they're
+requested and can send them all at once in one or more events. Alternatively
+the URI may not be known straight away (such as if an IP
+address or port is being dynamically allocated.) In that case the
+publisher service would delay sending events for unknown URI until the
+full URI is known.</p>
+<p>Having each URI reported at most once means that a client can connect to
+each URI reported in events without having to track which URI have
+already been connected to. This simplifies the client. Alternatively, a
+client may wait for the completion event and a full set of URI before
+attempting to connect. This would be simpler to implement, but might be
+slower to start up.</p>
+<blockquote>
+<p>The completion event will contain every URI that the publisher service
+is aware of.</p>
+</blockquote>
+<blockquote>
+<p>The publisher service will follow the above process to publish all URI that
+it's aware of. It will not suppress URI based on device status or
+service status.</p>
+</blockquote>
+<p>For example, a device might be powered off, in the process of powering
+on, or powered on but have a hardware fault that makes it impossible to use.
+In all cases the publisher service will publish the URI anyway. The client
+can't assume anything about the device based on the URI. It will always
+need to query the service at the URI for its status to know more.</p>
+<p>Events should be sent as soon as a URI is
+known by the publisher - the event doesn't mean or imply that the URI
+is currently available or can be connected to - that error handling
+must be performed by the client (see below.)</p>
+<p><strong>Note:</strong> <em>Even if the publisher service could know that a URI was valid
+at the time that it sends the event, the client can't know that the URI
+is still valid when it attempts to use the URI. It could have failed
+between querying and connecting. So the client has to handle errors,
+timeouts and retrying when connecting to the URI.</em></p>
+<blockquote>
+<p>The client may then attempt to open a WebSocket connection to each of
+the returned URI. The client will handle connection failures and
+timeouts by repeating the attempts to connect such that the service has
+a reasonable amount of time to start up.</p>
+</blockquote>
+<blockquote>
+<p>Each service will endeavor to accept connections as quickly as possible
+during startup and restarts. Once a connection has been accepted a
+service may continue to report a 'starting' status until the device is
+physically started and ready.</p>
+</blockquote>
+<p>Some devices are slow physically to start up, but software should be
+able to start relatively quickly. So, for example, a cash recycler
+device might be able to accept a connection within a few seconds of
+power being applied, but the physical hardware can take several minutes
+to reset. During this time the service would accept connections but
+report a 'starting' status.</p>
+<blockquote>
+<p>Each connection will be used to communicate with a single service. The
+service will then be queried for details about that service, such as the
+type of service or device that it represents and the messages and
+interfaces that it supports. (<strong>todo: Querying for service information
+needs to be documented elsewhere.</strong>)</p>
+</blockquote>
+<blockquote>
+<p>The connection to the service will be kept open for as long as the
+service is in use. Details of the service lifetime are covered
+elsewhere.</p>
+</blockquote>
+<p>The returned URI is a full URI including the machine name and port. It is
+possible that these values will be different to the service discovery
+URI - each service may be on a different machine, a different IP
+address, and a different port. The port is also independent of the
+discovery port range. It can be any port number.</p>
+<blockquote>
+<p>The service URI values will have the same version number as the service
+discovery URI version number. Different versions of the API will not be
+mixed.</p>
+</blockquote>
+<p>If a client wants to open multiple different API version numbers then it
+should perform service discovery against each of the possible version URI
+strings.</p>
+<blockquote>
+<p>The client may close the publisher connection once it has completed
+service discovery, or it may keep the connection open. This will have
+no effect on the behavior of services.</p>
+</blockquote>
+
+  </div>
+
+  
+</div>
+
+
+  
+  
+
+<div class="section">
+  <a name="section-Messages"></a>
+  <h2 class="section-header">Message Definition</h2>
+
+  <div class="markdown">
+    <h1>API Definition</h1>
+<p>In XFS4IoT Services are accessible through a WebSocket Interface. The following specification details the format of message sent to the
+XFS4IOT Service.</p>
+<p>Data sent across the WebSocket stream utilize JSON as a format (<a href="https://www.json.org/">https://www.json.org/</a>).  Each message conforms to
+one of the following Message Types. Message Types are documented in the following table.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Message Type</th>
+<th style="text-align:left">Direction</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Command</td>
+<td style="text-align:left">Client to Service</td>
+<td style="text-align:left">Message sent to the XFS4IOT Service to perform a Command</td>
+</tr>
+<tr>
+<td style="text-align:left">Response</td>
+<td style="text-align:left">Service to Client</td>
+<td style="text-align:left">Message from the XFS4IOT Service indicating if the Command is valid and queued.</td>
+</tr>
+<tr>
+<td style="text-align:left">Event</td>
+<td style="text-align:left">Service to Client</td>
+<td style="text-align:left">Intermediate message from the XFS4IOT Service indicating progress of the Command.</td>
+</tr>
+<tr>
+<td style="text-align:left">Completion</td>
+<td style="text-align:left">Service to Client</td>
+<td style="text-align:left">Final message from the XFS4IOT Service indicating the Command is complete.</td>
+</tr>
+<tr>
+<td style="text-align:left">Unsolicited</td>
+<td style="text-align:left">Service to Client</td>
+<td style="text-align:left">Message from the XFS4IOT Service unrelated to a Command.</td>
+</tr>
+</tbody>
+</table>
+<p>All the message types follow the same JSON structure conforming of a mandatory header and payload.</p>
+<ul>
+<li><strong>header</strong> : containing attributes that are common across all Message Types to allow the payload to be efficiently parsed</li>
+<li><strong>payload</strong> : containing information that is specific to the Message Type and action.</li>
+</ul>
+<p>Header and Payload are the only two attributes defined at the top level of the JSON structure as the example illustrated below.</p>
+<pre><code class="language-JSON">{
+    &quot;header&quot;: {
+    },
+    &quot;payload&quot;: {
+    }
+}
+</code></pre>
+<h2>Header Definition</h2>
+<p>Headers are consistent across all XFS4IOT Message Types.  The following table details the header content. All attributes are mandatory.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Attribute Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">requestId</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">Unique request identifier supplied by the client used to correlate the command with responses, events and completions. For Unsolicited Events the field will be empty. For example &quot;12345&quot; or &quot;b34800d0-9dd2-4d50-89ea-92d1b13df54b&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">type</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The message type. The is must be eith &quot;command&quot;, &quot;response&quot;, &quot;event&quot;, &quot;completion&quot; or &quot;unsolicited&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The message name, for example &quot;CardReader.Status&quot;</td>
+</tr>
+</tbody>
+</table>
+<p>The following example illustrates the header for a CardReader.Status command Message.</p>
+<pre><code class="language-JSON">{
+    &quot;header&quot;: {
+        &quot;type&quot;: &quot;command&quot;,
+        &quot;name&quot;: &quot;CardReader.Status&quot;,
+        &quot;requestId&quot;: &quot;b34800d0-9dd2-4d50-89ea-92d1b13df54&quot;
+    },
+    &quot;payload&quot;: {
+    }
+}
+</code></pre>
+<h2>Payload Definition</h2>
+<p>The XFS4IOT class specifications detail the Payload content for the class Command, Event, Completion and Unsolicited Messages.</p>
+<h2>Example Message Flow</h2>
+<p><img src="data:image/png;base64,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" alt="GeneratedDiagram"></p>
+
+  </div>
+
+  
+</div>
+
+
+  
+  
+
+<div class="section">
+  <a name="section-E2ESecurity"></a>
+  <h2 class="section-header">End to End security overview</h2>
+
+  <div class="markdown">
+    <p>## Overview</p>
+<p>A key priority for XFS4IoT is to improve security of the whole environment where XFS is used.
+This means securing not only the interface between the service and the hardware, or the
+interface
+between the client and the service, but providing security all the way from one end of an
+operation to the other.</p>
+<p>For example, during a cash dispense operation the transaction will first be authorised by
+an authorising host which represents the owner of the cash in the device. That host will
+communicate through various other systems to the client application, the client application
+will communicate with the XFS4IoT service and the service will finally communicate with the
+hardware. Any part of that process is vulnerable to an attack which could lead to the wrong
+amount of cash being dispensed. XFS4IoT has been designed to block attacks at any point
+between the authorising host and the dispenser hardware - it's truly end to end.</p>
+<p>Both data 'integrity' like this, and 'confidentiality' for things like card data, are
+important. XFS4IoT focuses on integrity since confidentiality will be covered by TLS
+encryption of the network messages.</p>
+<h2>Tokens</h2>
+<p>XFS4IoT implements end to end security using strong cryptography, such as HMAC values.
+Secret keys are shared between endpoints using TR34 and TR31. The use of
+public key RKL ensures that only the correct endpoints have access to the end to end
+transactions.</p>
+<p>The data relevant to the end to end transactions is separated out from the normal clear
+text properties passed in the JSON message formats, and is included in different &quot;token&quot;
+properties in the messages. Each token property is defined in the relevant service class
+documentation. For example, there is a &quot;dispense token&quot; for cash dispense actions and a
+&quot;present status&quot; token to protect the information about the last presented cash operation.</p>
+<p>Tokens are encoded as a simple string which contains all of the information needed for that
+token, and also the information needed to keep it secure, such as the HMAC value. Keeping
+all of the information together in this way ensures that a single HMAC can protect all of the data,
+and there's no possibility that part of the data could be changed
+independent of other parts.</p>
+<p>Keeping the token as a simple string means that it's easy to handle for low-power hardware.
+For example, the token may need to be checked by embedded firmware, even if the service is
+running on a front end machine. To be fully end to end it must be checked on the hardware,
+so the format is kept simple.</p>
+<p>Like all XFS4IoT data any binary or hex values, such as the HMAC value, are encoded as
+a base64 string.</p>
+<p>The general format of a token is a string with a set of key=value pairs all comma seperated and UTC8 encoded.
+The first pair will give a random number. The last value will be an HMAC, The encoding is important so
+that the HMAC is consistent.</p>
+<pre><code class="language-text">RANDOM=&lt;Random&gt;,&lt;KEY&gt;=&lt;value&gt;,HMACSHA256=&lt;HMAC&gt;
+</code></pre>
+<ul>
+<li>Random number is the number initially exchanged between the end points and is used to
+ensure that each Token is different and to avoid replay attacks. The random number will always come at the start of
+the token (so that there isn't much constant leading data - this is important for security.)</li>
+<li>The KEY=value pairs define what the token is used for.
+For example, a cash dispenser might have &quot;DISPENSE1&quot; or &quot;PRESENTSTATUS&quot; keys in different
+Tokens. This ensures that tokens with different uses can't be reused by an attacker.
+&quot;value&quot; is the actually value of the data being protected and will be different for each
+operation.<br>
+There can be multiple key=value pairs, seperated by commas. Keys can appear in any order. Key names are always
+upper case.</li>
+<li>Tokens will not contain any extra whitespace.</li>
+<li>The HMAC is the BASE64 encoded HMAC of all the preceeding data up to and including the
+last comma. The HMAC is always the last value. This makes it easy to calculate the HMAC since it can be calculated
+over other data, converted to BASE64, then appended to the string. The HMAC will use SHA256 as the algorithm.</li>
+</ul>
+<p>For example, a dispense token might be:</p>
+<pre><code class="language-text">RANDOM=254611E63B2531576314E86527338D61,DISPENSE1=50.00EUR,HMACSHA256=wDOhmRIKUqm/Y9hEc65B3YYkAlmAmeUDOnSmAjGIQK0=
+</code></pre>
+<p>The value used to calculate the HMAC is</p>
+<pre><code class="language-text">RANDOM=254611E63B2531576314E86527338D61,DISPENSE1=50.00EUR,HMACSHA256=
+</code></pre>
+<p>A HMAC for this data, with SHA256 and a key of 112233445566778899AABBCCDDEEFF, is</p>
+<pre><code class="language-text">C033A199120A52A9BF63D84473AE41DD862402598099E5033A74A602318840AD
+</code></pre>
+<p>which BASE64 encoded is.</p>
+<pre><code class="language-text">wDOhmRIKUqm/Y9hEc65B3YYkAlmAmeUDOnSmAjGIQK0=
+</code></pre>
+<p>This would be included in a dispense command message as:</p>
+<pre><code class="language-JSON">{
+    &quot;header&quot;: {
+        &quot;type&quot;: &quot;command&quot;,
+        &quot;name&quot;: &quot;Dispenser.Dispense&quot;,
+        &quot;requestId&quot;: 456
+    },
+    &quot;payload&quot;: {
+        ...
+        &quot;dispenseToken&quot;: &quot;RANDOM=254611E63B2531576314E86527338D61,DISPENSE1=50.00EUR,HMACSHA256=wDOhmRIKUqm/Y9hEc65B3YYkAlmAmeUDOnSmAjGIQK0=&quot;
+        ...
+    }
+}
+</code></pre>
+<p>The standard set of keys and values is defined in the relevant specification for each token type.
+Including which keys are required.</p>
+<p>It's also permitted to include custom key values in a token. For example, a hardware dependent
+error code might be included. Unknown keys will be included in the HMAC calculation, but otherwise
+ignored, There must not be a dependency on custom keys. Care should be taken to avoid name clashes between keys,
+maybe by using a vendors name in the key name.</p>
+<p>The total token length will be limited to 1024 BYTES to avoid the risk of buffer overflows. Any token
+longer than this will be treated as invalid data.</p>
+<h2>Key management</h2>
+<p>To ensure strong security symmetric keys are shared between different endpoints.
+Ideally this will be done using public key encryption, as defined in TR34. However, in
+some cases it may be necessary to pre-load keys into hardware in some other secure way, for
+example in legacy hardware that can't support TR34. The security of the whole system is only as good as
+the security of these keys so it's vital that this is done in as secure a way as possible.</p>
+<p>The keys that are loaded are covered by the TR31 specification, which defines both key data and
+the key details such the intended use. This includes the algorithm that the key is intended to
+be used with. Since the key details defines the algorithm there is no need for algorithms to be
+negotiated in any other way - the two end points will effectively agree the algorithm to use by
+loading the relevant keys.</p>
+<p>For simplicity, communication in each direction will be handled seperately. So, for example,
+there will be a seperate key for tokens passed in each direction. (Also there will be a
+seperate random number in each direction. See below.) The naming convention will be to use
+&quot;Command&quot; for values relating to tokens passing from the client to the service, and &quot;Response&quot;
+for tokens passing from the service to the client. Hence there is a CommandKey and a seperate
+ResponseKey.</p>
+<p>The details of the key management are covered by the shared key management service class. Any
+service that implements end to end security will implement this service class as part of its
+interface.</p>
+<h2>Unique messages and replay attacks</h2>
+<p>To avoid 'replay attacks', where an attacker reuses an old message to replace a new one,
+it's important that all individual tokens are unique and the same data is not used
+multiple times. For example, it's common to have a dispense token for &quot;10EUR&quot; so that
+value (and its HMAC) will be the same for many transactions and could be reused by an attacker.
+To avoid this a random number is included in each token and the random number will be different for each
+transaction. This guarantees uniqueness.</p>
+<p>There will be a different random number for tokens passed in each direction. That is, there
+will be a CommandRandom and ResponseRandom number. Each random number must be generated and
+checked at the same end of the communication, so the CommandRandom must be generated and checked
+by the device hardware. The ResponseRandom number must be generated and checked by the client.
+(Ideally in the host HSM.)</p>
+<p>To fully avoid replay attacks the random number must be agreed between the endpoints
+before it's used. An extra command on the service class is called by the client
+to fetch a new Command Random number. This random number is then remembered by both end points
+and included in each command token. Similarly, a Response Random Number must be generated
+by the client/host, passed to the service, and included in all Responce Tokens. It
+should be possible to add the Response Random number to existing messages, such as a
+dispense command message for the cash dispenser.</p>
+<h2>Example of classic dispense</h2>
+<p>The following example shows how end to end security is used to protect a cash dispense
+operation during a clasic ATM transaction.</p>
+<p><img src="data:image/png;base64,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" alt="GeneratedDiagram"></p>
+
+  </div>
+
+  
+</div>
+
+
+  
+
+</div>
+
+
+
+
+<h1>Commands</h1>
+
+
+  
+
+<a name="command-Common.GetServices"></a>
+<div class="command">
+  <h2 class="section-header">
+    Common.GetServices
+    
+  </h2>
+
+  
+    <h3>Description</h3>
+    <p>Command send to the service discovery port to find the details of the service exposed by this publisher</p>
+
+  
+
+  <h3>Command Message</h3>
+  
+
+
+
+
+  
+
+
+  <h4>Message Header</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">requestId <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Unique request identifier supplied by the client used to correlate the command with responses, events and completions.  For Unsolicited Events the field will be empty.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">type <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The message type, either command, response, event or completion.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">name <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The original message name, for example &quot;CardReader.Status&quot;</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  </tbody>
+</table>
+
+
+  
+
+
+  
+
+
+  <h4>Message Payload</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell"> </td>
+  <td class="table__body__cell">
+    
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"></td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">timeout </td>
+  <td class="table__body__cell">
+    integer
+  </td>
+  <td class="table__body__cell">0</td>
+  <td class="table__body__cell"><p>Timeout in milliseconds for the command to complete. If set to zero, the command will not timeout but can be cancelled.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  </tbody>
+</table>
+
+
+  
+
+<h5>Example Message (generated)</h5> 
+<pre class="hljs mb-4 border border-grey-darkest rounded"><code>{
+  "headers": {
+    "requestId": "b34800d0-9dd2-4d50-89ea-92d1b13df54b",
+    "type": "command",
+    "name": "string"
+  },
+  "payload": {
+    "timeout": "5000"
+  }
+}</code></pre>
+
+
+
+  <h3>Completion Message</h3>
+  
+
+
+
+
+  
+
+
+  <h4>Message Header</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">requestId <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Unique request identifier supplied by the client used to correlate the command with responses, events and completions.  For Unsolicited Events the field will be empty.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">type <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The message type, either command, response, event or completion.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">name <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The original message name, for example &quot;CardReader.Status&quot;</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  </tbody>
+</table>
+
+
+  
+
+
+  
+
+
+  <h4>Message Payload</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell"> </td>
+  <td class="table__body__cell">
+    
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"></td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">completionCode </td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>success if the commmand was successful otherwise error</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">errorDescription </td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>If not success, then this is optional vendor dependent information to provide additional information</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell"> </td>
+  <td class="table__body__cell">
+    
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"></td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">vendorname </td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Freeform string naming the hardware vendor</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">services </td>
+  <td class="table__body__cell">
+    array
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"></td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">services.serviceURI <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The URI which can be used to contact this individual service</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  </tbody>
+</table>
+
+
+  
+
+<h5>Example Message (generated)</h5> 
+<pre class="hljs mb-4 border border-grey-darkest rounded"><code>{
+  "headers": {
+    "requestId": "b34800d0-9dd2-4d50-89ea-92d1b13df54b",
+    "type": "command",
+    "name": "string"
+  },
+  "payload": {
+    "completionCode": "success",
+    "errorDescription": "string",
+    "vendorname": "string",
+    "services": [
+      {
+        "serviceURI": "wss://ATM1:123/xfs4iot/v1.0/CardReader"
+      }
+    ]
+  }
+}</code></pre>
+
+
+
+  <h3>Event Messages</h3>
+  <ul>
+    
+    <li><a href="#message-Common.ServiceDetailEvent">Common.ServiceDetailEvent</a></li>
+    
+  </ul>
+
+</div>
+
+
+
+
+
+
+<h1>Unsolicited Events</h1>
+
+
+
+
+
+
+
+
+  
+    
+      
+        
+      
+    
+   
+
+
+<h1>Events</h1>
+
+
+  <a name="message-Common.ServiceDetailEvent"></a>
+  <div class="unsolicited">
+    <h2 class="section-header">
+      Common.ServiceDetailEvent
+      
+    </h2>
+
+    
+    <h3>Description</h3>
+    
+
+    
+
+
+  <p>Details of some services published by this endpoint</p>
+
+
+
+
+  
+
+
+  <h4>Message Header</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">requestId <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Unique request identifier supplied by the client used to correlate the command with responses, events and completions.  For Unsolicited Events the field will be empty.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">type <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The message type, either command, response, event or completion.</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">name <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The original message name, for example &quot;CardReader.Status&quot;</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  </tbody>
+</table>
+
+
+  
+
+
+  
+
+
+  <h4>Message Payload</h4>
+
+
+<table class="table">
+    <thead class="table__head">
+      <tr class="table__head__row">
+        <th class="table__head__cell">Name</th>
+        <th class="table__head__cell">Type</th>
+        <th class="table__head__cell">Default</th>
+        <th class="table__head__cell">Description</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+    
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">vendorname </td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>Freeform string naming the hardware vendor</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	  
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">services </td>
+  <td class="table__body__cell">
+    array
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"></td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+
+
+
+
+
+
+<tr class="table__body__row">
+  <td class="table__body__cell">services.serviceURI <span class="required-badge">(Required)</span></td>
+  <td class="table__body__cell">
+    string
+  </td>
+  <td class="table__body__cell"></td>
+  <td class="table__body__cell"><p>The URI which can be used to contact this individual service</p>
+</td>
+</tr class="table__body__row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+	
+  </tbody>
+</table>
+
+
+  
+
+<h5>Example Message (generated)</h5> 
+<pre class="hljs mb-4 border border-grey-darkest rounded"><code>{
+  "headers": {
+    "requestId": "b34800d0-9dd2-4d50-89ea-92d1b13df54b",
+    "type": "command",
+    "name": "string"
+  },
+  "payload": {
+    "vendorname": "string",
+    "services": [
+      {
+        "serviceURI": "wss://ATM1:123/xfs4iot/v1.0/CardReader"
+      }
+    ]
+  }
+}</code></pre>
+
+  
+  </div>
+
+
+
+
+    </div>
+  </div>
+
+  <div class="fixed-footer">
+    <div class="container">
+      <h5>XFS4IoT specification - Preview version 0.3. Next preview - Q1 2021. Note: work-in-progress. Use at your own
+        risk.</h5>
+      <h6>All rights of exploitation in any form and by any means reserved worldwide for CEN national members.</h6>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"
+    type="application/javascript"></script>
+  <script type="application/javascript">
+    function highlightCode() {
+      var blocks = document.querySelectorAll('.hljs code');
+
+      for (var i = 0; i < blocks.length; i++) {
+        hljs.highlightBlock(blocks[i]);
+      }
+    }
+
+    window.addEventListener('load', highlightCode);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+{% from "./message.html" import message %}
+
+<h1>Unsolicited Events</h1>
+
+{% for eventName, eventDefinition in xfs4iotapi._json.unsolicited %}
+  <a name="message-{{eventName}}"></a>
+  <div class="unsolicited">
+    <h2 class="section-header">
+      {{eventName}}
+      {% if eventDefinition.deprecated %}
+        <span class="operation-badge operation-badge--deprecated unsolicited__header__operation-badge">Deprecated</span>
+      {% endif %}
+    </h2>
+
+    {% if eventDefinition.description %}
+    <h3>Description</h3>
+    {% endif %}
+        
+    {{ message(eventDefinition) }}  
+  </div>
+{% endfor %}
