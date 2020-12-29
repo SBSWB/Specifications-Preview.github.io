@@ -12,6 +12,8 @@ html, body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   max-width: 79%;
+  overflow: auto;
+  word-break: break-all;
 }
 
 .container{
