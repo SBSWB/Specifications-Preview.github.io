@@ -20,12 +20,13 @@ html, body {
     }
     .fixed-header,.fixed-footer{
         width: 100%;
-        position: fixed;        
+        position: fixed;
+        overflow: auto;        
         background: #333;
-        padding: 1%;
         color: #fff;
         left: 300px;
         z-index: 100;
+        word-break: break-all;
     }
     .fixed-header{
       top: 0;
@@ -118,10 +119,11 @@ html, body {
 
 .documentation {
   position: absolute;
+  overflow: auto;
   left: 300px;
-  top: 20px;
+  top: 50px;
   padding-bottom: 100px;
-  margin: 5%;
+  margin: 10px;
   z-index: 10;
 }
 
@@ -318,11 +320,13 @@ code {
   padding: 0.5em 0.5em;
   background-color: #eee;
   word-break: break-all;
+  overflow: auto;
 }
 
 pre code {
   display: block;
   overflow-x: auto;
+  word-break: break-all;
 }
 
 .hljs {
