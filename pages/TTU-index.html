@@ -219,29 +219,29 @@ If the device has no shift key, the ReadForm and Read commands will return only 
 <h3>Definition Syntax</h3>
 <hr>
 <p>The syntactic rules for form, field and media definitions are as follows:</p>
-<pre><code>    White space	            space, tab.
-    Line continuation	      backslash (\).
-    Line termination	      CR, LF, CR/LF; line termination ends a &quot;keyword section&quot; (a keyword and its value[s]).
-    Keywords	              must be all upper case.
-    Names	                  (field/media/font names) any case; case is preserved; Service Providers are case sensitive.
-    Strings            	    all strings must be enclosed in double quote characters (&quot;); standard C escape sequences are  allowed.
-    Comments	              start with two forward slashes (//); end at line termination.
+<pre><code>    White space             space, tab.
+    Line continuation       backslash (\).
+    Line termination       CR, LF, CR/LF; line termination ends a &quot;keyword section&quot; (a keyword and its value[s]).
+    Keywords               must be all upper case.
+    Names                   (field/media/font names) any case; case is preserved; Service Providers are case sensitive.
+    Strings                 all strings must be enclosed in double quote characters (&quot;); standard C escape sequences are  allowed.
+    Comments               start with two forward slashes (//); end at line termination.
 </code></pre>
 <p>Other notes:</p>
-<pre><code>•	If a keyword is present, all its values must be specified; default values are used only if the keyword is absent.
-•	Values that are character strings are marked with asterisks in the definitions below, and must be quoted as specified above.
-•	Fields are processed in the sequence they are defined in the form.
-•	The order of attributes within a form is not mandatory; the attributes may be defined in any order.
-•	All forms can be represented using either ISO 646 (ANSI) or unicode character encoding. If the unicode representation is used then all Names and Strings are restricted to an internal representation of ISO 646 (ANSI) characters. Only the initialValue keyword values can have double byte values outside of the ISO 646 (ANSI) character set.
-•	If forms character encoding is unicode then, consistent with the unicode standard, the file prefix must be in Little Endian (xFFFE) or Big Endian (xFEFF) notation, such that unicode encoding is recognized.
-•	In the form definition file, where characters are expressed using standard C hexadecimal escape sequences, the high order byte is defined first.  For example, &quot;\x0041&quot; would represent the character 'A'.  This is independent of the encoding format of the form definition file
+<pre><code>• If a keyword is present, all its values must be specified; default values are used only if the keyword is absent.
+• Values that are character strings are marked with asterisks in the definitions below, and must be quoted as specified above.
+• Fields are processed in the sequence they are defined in the form.
+• The order of attributes within a form is not mandatory; the attributes may be defined in any order.
+• All forms can be represented using either ISO 646 (ANSI) or unicode character encoding. If the unicode representation is used then all Names and Strings are restricted to an internal representation of ISO 646 (ANSI) characters. Only the initialValue keyword values can have double byte values outside of the ISO 646 (ANSI) character set.
+• If forms character encoding is unicode then, consistent with the unicode standard, the file prefix must be in Little Endian (xFFFE) or Big Endian (xFEFF) notation, such that unicode encoding is recognized.
+• In the form definition file, where characters are expressed using standard C hexadecimal escape sequences, the high order byte is defined first.  For example, &quot;\x0041&quot; would represent the character 'A'.  This is independent of the encoding format of the form definition file
 </code></pre>
 <h3>Form/media definition files in multi-vendor environments</h3>
 <hr>
 <p>Although for most Service Providers directory location and extension of form/media definition files are configurable through the registry, the capabilities of Service Providers and or actual hardware may vary. Therefore the following considerations should be taken into account when applications use form definition files with the purpose of running in a multi-vendor environment:</p>
-<pre><code>•	Physical display area dimensions may vary from one text terminal to another.
-•	Just-in-time form loading may not be supported by all Service Providers, which makes it impossible to create dynamic form files just before displaying them (which in return means that only the display data of the forms can be changed, not the -layout data such as field positions).
-•	Some form/media definition keywords may not be supported due to limitations of the hardware or software.
+<pre><code>• Physical display area dimensions may vary from one text terminal to another.
+• Just-in-time form loading may not be supported by all Service Providers, which makes it impossible to create dynamic form files just before displaying them (which in return means that only the display data of the forms can be changed, not the -layout data such as field positions).
+• Some form/media definition keywords may not be supported due to limitations of the hardware or software.
 </code></pre>
 <h3>Form Definition</h3>
 <hr>
@@ -357,7 +357,7 @@ If the device has no shift key, the ReadForm and Read commands will return only 
 <td style="text-align:left"></td>
 <td style="text-align:left"><strong>TYPE</strong></td>
 <td style="text-align:left"><em>fieldtype</em></td>
-<td style="text-align:left">Type of field: 	Text (default) 	Invisible 	Password (contents is echoed with '*') Graphic (ignored for ReadForm commands)</td>
+<td style="text-align:left">Type of field:  Text (default)  Invisible  Password (contents is echoed with '*') Graphic (ignored for ReadForm commands)</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
@@ -369,25 +369,25 @@ If the device has no shift key, the ReadForm and Read commands will return only 
 <td style="text-align:left"></td>
 <td style="text-align:left"><strong>CLASS</strong></td>
 <td style="text-align:left"><em>class</em></td>
-<td style="text-align:left">Field class: Optional (default) 	Static 	Required</td>
+<td style="text-align:left">Field class: Optional (default)  Static  Required</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
 <td style="text-align:left"><strong>KEYS</strong></td>
 <td style="text-align:left"><em>keys</em></td>
-<td style="text-align:left">Accepted input key types: 	Numeric 	Hexadecimal 	Alphanumeric This is an optional field where the default value is vendor dependent.</td>
+<td style="text-align:left">Accepted input key types:  Numeric  Hexadecimal  Alphanumeric This is an optional field where the default value is vendor dependent.</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
 <td style="text-align:left"><strong>ACCESS</strong></td>
 <td style="text-align:left"><em>access</em></td>
-<td style="text-align:left">Access rights of field: 	Write (default) 	Read 	ReadWrite</td>
+<td style="text-align:left">Access rights of field:  Write (default)  Read  ReadWrite</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
 <td style="text-align:left"><strong>OVERFLOW</strong></td>
 <td style="text-align:left"><em>overflow</em></td>
-<td style="text-align:left">Action on field overflow: 	Terminate (default) 	Truncate 	OverWrite</td>
+<td style="text-align:left">Action on field overflow:  Terminate (default)  Truncate  OverWrite</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
@@ -399,7 +399,7 @@ If the device has no shift key, the ReadForm and Read commands will return only 
 <td style="text-align:left"></td>
 <td style="text-align:left"><strong>HORIZONTAL</strong></td>
 <td style="text-align:left"><em>justify</em></td>
-<td style="text-align:left">Horizontal alignment of field contents: 	Left (default) 	Right 	Center</td>
+<td style="text-align:left">Horizontal alignment of field contents:  Left (default)  Right  Center</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
@@ -17762,15 +17762,7 @@ The configured set will be active until the next ReadForm command ends, at which
     string
   </td>
   <td class="table__body__cell"></td>
-  <td class="table__body__cell"><p>String which specifies the alphanumeric keys on the Text Terminal Unit, e.g. &quot;12ABab&quot;, to be active during the execution
-of the next ReadForm command. Devices having a shift key interpret this parameter differently from those that
-do not have a shift key. For devices having a shift key, specifying only the upper case of a particular letter enables both
-upper and lower case of that key, but the device converts lower case letters to upper case in the output parameter. To enable
-both upper and lower case keys, and have both upper and lower case letters returned, specify both the upper and lower case of
-the letter (e.g. &quot;12AaBb&quot;). For devices not having a shift key, specifying either the upper case only (e.g. &quot;12AB&quot;), or specifying
-both the upper and lower case of a particular letter (e.g. &quot;12AaBb&quot;), enables that key and causes the device to return the upper
-case of the letter in the output parameter. For both types of device, specifying only lower case letters (e.g. &quot;12ab&quot;) produces a
-key invalid error.</p>
+  <td class="table__body__cell"><p>String which specifies the alphanumeric keys on the Text Terminal Unit, e.g. &quot;12ABab&quot;, to be active during the execution of the next ReadForm command. Devices having a shift key interpret this parameter differently from those that do not have a shift key. For devices having a shift key, specifying only the upper case of a particular letter enables both upper and lower case of that key, but the device converts lower case letters to upper case in the output parameter. To enable both upper and lower case keys, and have both upper and lower case letters returned, specify both the upper and lower case of the letter (e.g. &quot;12AaBb&quot;). For devices not having a shift key, specifying either the upper case only (e.g. &quot;12AB&quot;), or specifying both the upper and lower case of a particular letter (e.g. &quot;12AaBb&quot;), enables that key and causes the device to return the uppercase of the letter in the output parameter. For both types of device, specifying only lower case letters (e.g. &quot;12ab&quot;) produces a key invalid error.</p>
 </td>
 </tr class="table__body__row">
 
@@ -18931,8 +18923,6 @@ This value is not set when no command key was pressed.</p>
 
 
 <h1>Events</h1>
-
-
 
 
 
