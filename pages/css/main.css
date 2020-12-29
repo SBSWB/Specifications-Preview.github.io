@@ -11,14 +11,16 @@ html, body {
   line-height: 20px;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-  max-width: 79%;
-  overflow: auto;
-  word-break: break-all;
+  max-width: 90%;
+  overflow: scroll;
+  word-break: break-word;
 }
 
 .container{
         width: 90%;
         margin: 0 auto; /* Center the DIV horizontally */
+        overflow: scroll;
+        word-break: break-word;        
     }
     .fixed-header,.fixed-footer{
         width: 100%;
@@ -28,7 +30,7 @@ html, body {
         color: #fff;
         left: 300px;
         z-index: 100;
-        word-break: break-all;
+        word-break: break-word;
     }
     .fixed-header{
       top: 0;
@@ -52,7 +54,7 @@ html, body {
   bottom: 0;
   width: 300px;
   background: #263238;
-  overflow: auto;
+  overflow: scroll;
   padding-bottom: 60px;
   z-index: 300;
 }
@@ -121,7 +123,9 @@ html, body {
 
 .documentation {
   position: absolute;
-  overflow: auto;
+  overflow: scroll;
+  word-break: break-word;
+  max-width: 90%;
   left: 300px;
   top: 50px;
   padding-bottom: 100px;
@@ -201,7 +205,7 @@ html, body {
 
 .table {
   margin: 0 0 40px 0;
-  width: 100%;
+  max-width: 90%;
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   border-spacing: 0;
   z-index: 20;
@@ -214,6 +218,7 @@ html, body {
 .table__head__cell {
   padding: 6px 12px;
   text-align: left;
+  min-width: 50px;
 }
 .table__body__row {
   background: #f6f6f6;
@@ -223,10 +228,12 @@ html, body {
 }
 .table__body__cell {
   padding: 6px 12px;
-  vertical-align: top;
+  vertical-align: top;  
+  min-width: 50px;
 }
 .table__body__cell p {
   margin-top: 0;
+  min-width: 50px;
 }
 .table__expand {
   display: inline-block;
@@ -245,11 +252,15 @@ html, body {
 .table__body__row--with-nested .table--nested {
   display: block;
   max-height: 0;
-  overflow: auto;
+  overflow: scroll;
+  word-break: break-word;
   transition: max-height 1s ease;
+  max-width: 80%;
 }
 .table__body__row--with-nested--expanded .table--nested {
   max-height: 300px;
+  overflow: scroll;
+  word-break: break-word;
 }
 .table--nested {
   margin: 0;
@@ -321,19 +332,20 @@ html, body {
 code {
   padding: 0.5em 0.5em;
   background-color: #eee;
-  word-break: break-all;
-  overflow: auto;
+  word-break: break-word;
+  overflow: scroll;
 }
 
 pre code {
   display: block;
-  overflow-x: auto;
-  word-break: break-all;
+  overflow-x: scroll;
+  word-break: break-word;
 }
 
 .hljs {
   display: block;
-  overflow-x: auto;
+  overflow-x: scroll;
+  word-break: break-word;
   padding: 0.5em;
   color: #abb2bf;
   background: #282c34;
@@ -349,7 +361,9 @@ pre code {
 }
 
 .hljs-section,.hljs-name,.hljs-selector-tag,.hljs-deletion,.hljs-subst {
-  color: #e06c75;
+  color: #e06c75;  
+  overflow: scroll;
+  word-break: break-word;
 }
 
 .hljs-literal {
