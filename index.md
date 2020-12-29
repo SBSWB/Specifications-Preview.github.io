@@ -21,5 +21,5 @@ The XFS committee supplies this documentation on the latest XFS standard. This i
 
 [Click here to download the full PDF](assets/XFS4IoT Specification 0.3.pdf)
 
-![CEN disclaimer](assets/CEN copyright.png)
+![CEN disclaimer](assets/CEN copyright.PNG)
 
