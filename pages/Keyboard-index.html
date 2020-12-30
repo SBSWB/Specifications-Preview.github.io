@@ -231,7 +231,7 @@ pin pad (EPP). It supports key management, encryption and decryption. It is assu
 monitor which is used to display lead-through for a transaction. It is assumed that the display monitor is part of the Windows desktop, and
 can be the Windows primary monitor or any other monitor on the desktop. E.g. the following diagram shows 2 monitors extended across the desktop,
 with monitor 1 being the primary monitor and the ETS being overlaid on monitor 2 whose origin is (-1680.0).</p>
-<p><img src="../../Assets/Keyboard_ETS.png" alt="Keyboard_ETS"></p>
+<p><img src="../Assets/Keyboard_ETS.png" alt="Keyboard_ETS"></p>
 <p>The touch screen can optionally be used as a “mouse” for application purposes, while PIN operations are not in progress or optionally when non-secure PIN commands are in progress.</p>
 <p>The CEN interface supports two types of ETS</p>
 <ul>
@@ -288,11 +288,11 @@ an area outside of all Touch Frames in which touches behave like a mouse.</p>
 <p>PCI compliance means that GetPin and SecureKeyEntry can only be used with a single Touch Frame that covers the entire monitor. i.e. Mouse mode cannot be mixed with either PIN or Secure mode. If a Touch Key (or areas) is defined for an key value and that key value is not subsequently specified as active in a GetPin, GetData or SecureKeyEntry command, then the Touch Key is made inactive.</p>
 <p>Layouts defined with the DefineLayout command are persistent.</p>
 <p><strong>Example 1</strong> – this screen only uses Data mode – the entire screen is a Touch Frame. Mouse mode is not used.</p>
-<p><img src="../../Assets/Keyboard_Example1.png" alt="Keyboard_Example 1" title="Keyboard_Example 1"></p>
+<p><img src="../Assets/Keyboard_Example1.png" alt="Keyboard_Example 1" title="Keyboard_Example 1"></p>
 <p><strong>Example 2</strong> – this shows a monitor with two Touch Frames and 14 Touch Keys. The space within the Touch Frames not defined by a Touch Key are inactive (do not respond to touch). All areas outside a Touch Frame operate in Mouse mode. This example shows two Mouse mode &quot;keys&quot;. e.g. Windows &quot;Button&quot;, HTML &quot;BUTTON&quot; or a custom control. Other touches in Mouse mode are normally dealt with by the application event engine. However, this can be restricted – see example 3.</p>
-<p><img src="../../Assets/Keyboard_Example2.png" alt="Keyboard_Example 2" title="Keyboard_Example 2"></p>
+<p><img src="../Assets/Keyboard_Example2.png" alt="Keyboard_Example 2" title="Keyboard_Example 2"></p>
 <p><strong>Example 3</strong> - this screen uses Mouse and Data modes – Mouse mode is used only in a restricted area. The touch keyboard definition has 3 frames. Frame 1 has no Touch Keys. Frame 2 has 2 Touch Keys; Frame 3 has 12 Touch Keys.</p>
-<p><img src="../../Assets/Keyboard_Example3.png" alt="Keyboard_Example 3" title="Keyboard_Example 3"></p>
+<p><img src="../Assets/Keyboard_Example3.png" alt="Keyboard_Example 3" title="Keyboard_Example 3"></p>
 
   </div>
 
@@ -832,7 +832,7 @@ an area outside of all Touch Frames in which touches behave like a mouse.</p>
 <h4>keyEntryMode == irregUnique</h4>
 <hr>
 <p>When keyEntryMode is irregUnique then the values in the array report which physical keys are associated with the function keys 0-9, A-F and any other function keys that can be enabled as defined in the FuncKeyDetail parameter. The rows and columns parameters define the ratio of the width to height, i.e. square if the parameters are the same or rectangular if columns is larger than rows, etc. A Service Provider must return the position and size data for each key.</p>
-<p><img src="../../Assets/Keyboard_Layout.png" alt="Keyboard_Layout" title="Keyboard Layout"></p>
+<p><img src="../Assets/Keyboard_Layout.png" alt="Keyboard_Layout" title="Keyboard Layout"></p>
 <p>In the above example, where an alphanumeric keyboard supports secure key entry and the hex digits are located as shown, the hexKeys will contain the entries in the array as defined in the following table. All the hex digits and function keys that can be enabled must be included in the array; in addition any keys that would help an application display an image of the keyboard can be included. In this example only the PIN pad digits (the keys on the right) and the unique hex digits are reported. Note that the position data in this example may not be 100% accurate as the diagram is not to scale.</p>
 <table>
 <thead>
