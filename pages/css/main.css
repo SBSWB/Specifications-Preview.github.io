@@ -12,20 +12,18 @@ html, body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   max-width: 90%;
-  overflow: scroll;
+  overflow-x: scroll;
   word-break: break-word;
 }
 
 .container{
         width: 90%;
         margin: 0 auto; /* Center the DIV horizontally */
-        overflow: scroll;
         word-break: break-word;        
     }
     .fixed-header,.fixed-footer{
         width: 100%;
-        position: fixed;
-        overflow: auto;        
+        position: fixed;    
         background: #333;
         color: #fff;
         left: 300px;
@@ -54,7 +52,6 @@ html, body {
   bottom: 0;
   width: 300px;
   background: #263238;
-  overflow: scroll;
   padding-bottom: 60px;
   z-index: 300;
 }
@@ -123,7 +120,7 @@ html, body {
 
 .documentation {
   position: absolute;
-  overflow: scroll;
+  overflow-x: scroll;
   word-break: break-word;
   max-width: 90%;
   left: 300px;
@@ -205,7 +202,7 @@ html, body {
 
 .table {
   margin: 0 0 40px 0;
-  max-width: 90%;
+  width: 100%;
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   border-spacing: 0;
   z-index: 20;
@@ -214,11 +211,13 @@ html, body {
   font-weight: 900;
   color: #ffffff;
   background: #00796b;
+  min-width: 100px;
 }
 .table__head__cell {
   padding: 6px 12px;
   text-align: left;
-  min-width: 50px;
+  min-width: 100px;
+  max-width: 400px;
 }
 .table__body__row {
   background: #f6f6f6;
@@ -229,11 +228,11 @@ html, body {
 .table__body__cell {
   padding: 6px 12px;
   vertical-align: top;  
-  min-width: 50px;
+  min-width: 100px;
 }
 .table__body__cell p {
   margin-top: 0;
-  min-width: 50px;
+  min-width: 100px;
 }
 .table__expand {
   display: inline-block;
@@ -252,14 +251,14 @@ html, body {
 .table__body__row--with-nested .table--nested {
   display: block;
   max-height: 0;
-  overflow: scroll;
+  overflow-x: scroll;
   word-break: break-word;
   transition: max-height 1s ease;
   max-width: 80%;
 }
 .table__body__row--with-nested--expanded .table--nested {
   max-height: 300px;
-  overflow: scroll;
+  overflow-x: scroll;
   word-break: break-word;
 }
 .table--nested {
@@ -333,7 +332,7 @@ code {
   padding: 0.5em 0.5em;
   background-color: #eee;
   word-break: break-word;
-  overflow: scroll;
+  overflow-x: scroll;
 }
 
 pre code {
@@ -362,7 +361,7 @@ pre code {
 
 .hljs-section,.hljs-name,.hljs-selector-tag,.hljs-deletion,.hljs-subst {
   color: #e06c75;  
-  overflow: scroll;
+  overflow-x: scroll;
   word-break: break-word;
 }
 

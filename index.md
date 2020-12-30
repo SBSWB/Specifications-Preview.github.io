@@ -3,10 +3,12 @@ Title: XFS4IoT specification preview
 ---
 The XFS committee supplies this documentation on the latest XFS standard. This information is freely distributed.
 
-#### Preview version 0.3. Next preview - Q1 2021. Note: work-in-progress. Subject to change without warning. Use at your own risk.
-#### All rights of exploitation in any form and by any means reserved worldwide for CEN national Members.
+#### Preview version 0.3. Next preview - Q1 2021. Note: work-in-progress. Subject to change without warning. Use at your own risk
+
+#### All rights of exploitation in any form and by any means reserved worldwide for CEN national Members
 
 ### Specifications
+
 - [API](pages/API-index.html)
 - [Card Reader Class](pages/CR-index.html)
 - [Cash Acceptor Class](pages/CA-index.html)
@@ -22,4 +24,3 @@ The XFS committee supplies this documentation on the latest XFS standard. This i
 [Click here to download the full PDF](assets/XFS4IoT Specification 0.3.pdf)
 
 ![CEN disclaimer](assets/CEN copyright.PNG)
-
