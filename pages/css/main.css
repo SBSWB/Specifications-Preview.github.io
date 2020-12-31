@@ -85,7 +85,7 @@ html, body {
 .navigation__list {
   list-style: none;
   padding-left: 0;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .navigation__list__item-text {
@@ -94,7 +94,6 @@ html, body {
   text-decoration: none;
   padding: 7px 7px 7px 20px;
   font-size: 14px;
-  overflow: scroll;
 }
 
 .navigation__list__item-text--link:hover {
