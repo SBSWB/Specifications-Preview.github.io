@@ -170,8 +170,8 @@
   </div>
 
   <div class="markdown">
-    <p>This section describes the functions provided by a generic Text Terminal Unit () service.
-A Text Terminal Unit is a text i/o device, which applies both to ATM operator panels and to displays incorporated in devices such as  pads and printers.
+    <p>This section describes the functions provided by a generic Text Terminal Unit () service.<br>
+A Text Terminal Unit is a text i/o device, which applies both to ATM operator <br>panels and to displays incorporated in devices such as pads and printers.
 This service allows for the following categories of functions:</p>
 <ul>
 <li>
@@ -187,8 +187,8 @@ This service allows for the following categories of functions:</p>
 <p>LED settings and control</p>
 </li>
 </ul>
-<p>All position indexes are zero based, where column zero, row zero is the top-leftmost position.
-If the device has no shift key, the ReadForm and Read commands will return only upper case letters. If the device has a shift key, these commands return upper and lower case letters as governed by the user's use of the shift key.</p>
+<p>All position indexes are zero based, where column zero, row zero is the top-leftmost position.<br>
+If the device has no shift key, the ReadForm and Read commands will return only <br>upper case letters. If the device has a shift key, these commands return <br>upper and lower case letters as governed by the user's use of the shift key.</p>
 
   </div>
 
@@ -234,13 +234,13 @@ If the device has no shift key, the ReadForm and Read commands will return only 
 • The order of attributes within a form is not mandatory; the attributes may be defined in any order.
 • All forms can be represented using either ISO 646 (ANSI) or unicode character encoding. If the unicode representation is used then all Names and Strings are restricted to an internal representation of ISO 646 (ANSI) characters. Only the initialValue keyword values can have double byte values outside of the ISO 646 (ANSI) character set.
 • If forms character encoding is unicode then, consistent with the unicode standard, the file prefix must be in Little Endian (xFFFE) or Big Endian (xFEFF) notation, such that unicode encoding is recognized.
-• In the form definition file, where characters are expressed using standard C hexadecimal escape sequences, the high order byte is defined first.  For example, &quot;\x0041&quot; would represent the character 'A'.  This is independent of the encoding format of the form definition file
+• In the form definition file, where characters are expressed using standard C hexadecimal escape sequences, the high order byte is defined first. <br>For example, &quot;\x0041&quot; would represent the character 'A'.  This is independent of the encoding format of the form definition file
 </code></pre>
 <h3>Form/media definition files in multi-vendor environments</h3>
 <hr>
-<p>Although for most Service Providers directory location and extension of form/media definition files are configurable through the registry, the capabilities of Service Providers and or actual hardware may vary. Therefore the following considerations should be taken into account when applications use form definition files with the purpose of running in a multi-vendor environment:</p>
+<p>Although for most Service Providers directory location and extension of form/media definition files are configurable through the registry,<br> the capabilities of Service Providers and or actual hardware may vary. <br>Therefore the following considerations should be taken into account when applications use form definition files with the purpose of running in a multi-vendor environment:</p>
 <pre><code>• Physical display area dimensions may vary from one text terminal to another.
-• Just-in-time form loading may not be supported by all Service Providers, which makes it impossible to create dynamic form files just before displaying them (which in return means that only the display data of the forms can be changed, not the -layout data such as field positions).
+• Just-in-time form loading may not be supported by all Service Providers,<br> which makes it impossible to create dynamic form files just before displaying them (which in return means that only the display data of the forms can be changed,<br> not the -layout data such as field positions).
 • Some form/media definition keywords may not be supported due to limitations of the hardware or software.
 </code></pre>
 <h3>Form Definition</h3>
@@ -277,7 +277,7 @@ If the device has no shift key, the ReadForm and Read commands will return only 
 <td style="text-align:left">(required)</td>
 <td style="text-align:left"><strong>LANGUAGE</strong></td>
 <td style="text-align:left"><em>languageID</em></td>
-<td style="text-align:left">Language used in this form - a 16 bit value (LANGID) which is  a combination of a primary (10 bits) and a secondary (6 bits)  language ID (This is the standard language ID in the Win32  API; standard macros support construction and decomposition  of this composite ID)</td>
+<td style="text-align:left">Language used in this form - a 16 bit value (LANGID) which is  a combination of a primary (10 bits) and a secondary (6 bits) <br>language ID (This is the standard language ID in the Win32  API; standard macros support construction and decomposition <br> of this composite ID)</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
@@ -301,7 +301,7 @@ If the device has no shift key, the ReadForm and Read commands will return only 
 <td style="text-align:left"></td>
 <td style="text-align:left"><strong>[ FIELD</strong></td>
 <td style="text-align:left"><em>fieldname</em>*</td>
-<td style="text-align:left">One field definition (as defined in the next section) for each  field in the form</td>
+<td style="text-align:left">One field definition (as defined in the next section) for each <br> field in the form</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
@@ -339,13 +339,13 @@ If the device has no shift key, the ReadForm and Read commands will return only 
 <td style="text-align:left"></td>
 <td style="text-align:left"><strong>LANGUAGE</strong></td>
 <td style="text-align:left"><em>languageID</em></td>
-<td style="text-align:left">Language used for this field. See Form definition for detailed description. If unspecified defaults to form definition Language specification.</td>
+<td style="text-align:left">Language used for this field. <br>See Form definition for detailed description. <br>If unspecified defaults to form definition Language specification.</td>
 </tr>
 <tr>
 <td style="text-align:left">(required)</td>
 <td style="text-align:left"><strong>POSITION</strong></td>
 <td style="text-align:left"><em>x</em>,  <em>y</em></td>
-<td style="text-align:left">Horizontal position (relative to left side of form) Vertical position (relative to top of form) The initial left upper position is referenced as (0,0)</td>
+<td style="text-align:left">Horizontal position (relative to left side of form) Vertical position (relative to top of form).<br> The initial left upper position is referenced as (0,0)</td>
 </tr>
 <tr>
 <td style="text-align:left">(required)</td>
@@ -357,13 +357,13 @@ If the device has no shift key, the ReadForm and Read commands will return only 
 <td style="text-align:left"></td>
 <td style="text-align:left"><strong>TYPE</strong></td>
 <td style="text-align:left"><em>fieldtype</em></td>
-<td style="text-align:left">Type of field:  Text (default)  Invisible  Password (contents is echoed with '*') Graphic (ignored for ReadForm commands)</td>
+<td style="text-align:left">Type of field: <br> Text (default)  Invisible  Password (contents is echoed with '*') Graphic (ignored for ReadForm commands)</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
 <td style="text-align:left"><strong>SCALING</strong></td>
 <td style="text-align:left"><em>scalingtype</em></td>
-<td style="text-align:left">Information on how to size the Graphic within the field: BestFit    (default) scale to size indicated ASIS render at native size Maintainaspect scale as close as possible to size  indicated while maintaining the aspect ratio and not losing Graphic information. SCALING is only relevant for Graphics field types</td>
+<td style="text-align:left">Information on how to size the Graphic within the field: BestFit    (default)<br> scale to size indicated ASIS render at native size Maintainaspect scale as close as possible to size <br> indicated while maintaining the aspect ratio and not losing Graphic information. SCALING is only relevant for Graphics field types</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
@@ -405,13 +405,13 @@ If the device has no shift key, the ReadForm and Read commands will return only 
 <td style="text-align:left"></td>
 <td style="text-align:left"><strong>FORMAT</strong></td>
 <td style="text-align:left"><em>formatstring</em>*</td>
-<td style="text-align:left">This is an application defined input field describing how  the application should format the data. This may be  interpreted by the Service Provider.</td>
+<td style="text-align:left">This is an application defined input field describing how <br> the application should format the data. This may be  interpreted by the Service Provider.</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
 <td style="text-align:left"><strong>INITIALVALUE</strong></td>
 <td style="text-align:left"><em>value</em>*</td>
-<td style="text-align:left">Initial value. For Graphic type fields, this value will  contain the filename of the Graphic image. The type of this  Graphic will be determined by the file extension (e.g. BMP  for Windows Bitmap). The Graphic file name must contain  the full path. For example &quot;C:\XFS\BSVCLOGO.BMP&quot; illustrates  the use of the full path name</td>
+<td style="text-align:left">Initial value. For Graphic type fields, this value will <br> contain the filename of the Graphic image. The type of this  Graphic will be determined by the file extension (e.g. BMP  for Windows Bitmap). <br>The Graphic file name must contain  the full path. For example &quot;C:\XFS\BSVCLOGO.BMP&quot; illustrates  the use of the full path name</td>
 </tr>
 <tr>
 <td style="text-align:left"><strong>END</strong></td>
@@ -449,7 +449,7 @@ If the device has no shift key, the ReadForm and Read commands will return only 
 
   
     <h3>Description</h3>
-    <p>This command reports the full range of information available, including the information that is provided by the Service Provider.</p>
+    <p>This command reports the full range of information available,<br> including the information that is provided by the Service Provider.</p>
 
   
 
@@ -490,7 +490,7 @@ If the device has no shift key, the ReadForm and Read commands will return only 
     string
   </td>
   <td class="table__body__cell"></td>
-  <td class="table__body__cell"><p>Unique request identifier supplied by the client used to correlate the command with responses, events and completions.  For Unsolicited Events the field will be empty.</p>
+  <td class="table__body__cell"><p>Unique request identifier supplied by the client used to correlate the command with responses, events and completions. <br> For Unsolicited Events the field will be empty.</p>
 </td>
 </tr class="table__body__row">
 
@@ -651,7 +651,7 @@ If the device has no shift key, the ReadForm and Read commands will return only 
     integer
   </td>
   <td class="table__body__cell">0</td>
-  <td class="table__body__cell"><p>Timeout in milliseconds for the command to complete. If set to zero, the command will not timeout but can be cancelled.</p>
+  <td class="table__body__cell"><p>Timeout in milliseconds for the command to complete. <br>If set to zero, the command will not timeout but can be cancelled.</p>
 </td>
 </tr class="table__body__row">
 
@@ -745,7 +745,7 @@ If the device has no shift key, the ReadForm and Read commands will return only 
     string
   </td>
   <td class="table__body__cell"></td>
-  <td class="table__body__cell"><p>Unique request identifier supplied by the client used to correlate the command with responses, events and completions.  For Unsolicited Events the field will be empty.</p>
+  <td class="table__body__cell"><p>Unique request identifier supplied by the client used to correlate the command with responses, events and completions. <br> For Unsolicited Events the field will be empty.</p>
 </td>
 </tr class="table__body__row">
 
@@ -965,8 +965,7 @@ If the device has no shift key, the ReadForm and Read commands will return only 
     array
   </td>
   <td class="table__body__cell"></td>
-  <td class="table__body__cell"><p>Specifies a list of vendor-specific, or any other extended, information.
-The information is returned as a series of &quot;key=value&quot; strings so that it is easily extendable by Service Providers.</p>
+  <td class="table__body__cell"><p>Specifies a list of vendor-specific, or any other extended, information. <br>The information is returned as a series of &quot;key=value&quot; strings so that it is easily extendable by Service Providers.</p>
 </td>
 </tr class="table__body__row">
 
@@ -999,7 +998,7 @@ The information is returned as a series of &quot;key=value&quot; strings so that
     array
   </td>
   <td class="table__body__cell"></td>
-  <td class="table__body__cell"><p>Specifies the state of the guidance light indicators. A number of guidance light types are defined below. Vendor specific guidance lights are defined starting from the end of the array.</p>
+  <td class="table__body__cell"><p>Specifies the state of the guidance light indicators. A number of guidance light types are defined below. <br>Vendor specific guidance lights are defined starting from the end of the array.</p>
 </td>
 </tr class="table__body__row">
 
@@ -1164,7 +1163,7 @@ The information is returned as a series of &quot;key=value&quot; strings so that
     integer
   </td>
   <td class="table__body__cell"></td>
-  <td class="table__body__cell"><p>Specifies the actual number of seconds required by the device to resume its normal operational state from the current power saving mode. This value is zero if either the power saving mode has not been activated or no power save control is supported</p>
+  <td class="table__body__cell"><p>Specifies the actual number of seconds required by the device <br>to resume its normal operational state from the current power saving mode. <br>This value is zero if either the power saving mode has not been activated or no power save control is supported.</p>
 </td>
 </tr class="table__body__row">
 
@@ -1275,7 +1274,7 @@ The information is returned as a series of &quot;key=value&quot; strings so that
     integer
   </td>
   <td class="table__body__cell">0</td>
-  <td class="table__body__cell"><p>Timeout in milliseconds for the command to complete. If set to zero, the command will not timeout but can be cancelled.</p>
+  <td class="table__body__cell"><p>Timeout in milliseconds for the command to complete. <br>If set to zero, the command will not timeout but can be cancelled.</p>
 </td>
 </tr class="table__body__row">
 
@@ -1347,7 +1346,7 @@ Capability to report media position is not supported by the device (e.g. a typic
 <p><strong>unknown</strong>&lt;br&gt;
 The media state cannot be determined with the device in its current state (e.g. the value of device is noDevice, powerOff, offline or hwerrror.</p>
 <p><strong>present</strong>&lt;br&gt;
-Media is present in the device, not in the entering position and not jammed. A card in a parking station is not considered to be present. On the latched dip device, this indicates that the card is present in the device and the card is unlatched.</p>
+Media is present in the device, not in the entering position and not jammed. <br>A card in a parking station is not considered to be present. <br>On the latched dip device, this indicates that the card is present in the device and the card is unlatched.</p>
 <p><strong>notPresent</strong>&lt;br&gt;
 Media is not present in the device and not at the entering position.</p>
 <p><strong>jammed</strong>&lt;br&gt;
@@ -1460,7 +1459,7 @@ The security module is open and ready to process cards.</p>
     integer
   </td>
   <td class="table__body__cell"></td>
-  <td class="table__body__cell"><p>The number of cards retained; applicable only to motor driven card units, for non-motorized card units this value is zero. This value is persistent it is reset to zero by the resetCount command.</p>
+  <td class="table__body__cell"><p>The number of cards retained; applicable only to motor driven card units. <br>For non-motorized card units this value is zero. This value is persistent it is reset to zero by the resetCount command.</p>
 </td>
 </tr class="table__body__row">
 
@@ -1493,21 +1492,21 @@ The security module is open and ready to process cards.</p>
     string
   </td>
   <td class="table__body__cell"></td>
-  <td class="table__body__cell"><p>Specifies the state of the chip controlled by this service. Depending on the value of capabilities response, this can either be the chip on the currently inserted user card or the chip on a permanently connected chip card. The state of the chip is one of the following:
+  <td class="table__body__cell"><p>Specifies the state of the chip controlled by this service. <br>Depending on the value of capabilities response, this can either be the chip on the currently inserted user card<br>or the chip on a permanently connected chip card. <br>The state of the chip is one of the following:
 <strong>notSupported</strong>&lt;br&gt;
-Capability to report the state of the chip is not supported by the ID card unit device. This value is returned for contactless chip card readers.</p>
+Capability to report the state of the chip is not supported by the ID card unit device. <br>This value is returned for contactless chip card readers.</p>
 <p><strong>unknown</strong>&lt;br&gt;
 The state of the chip cannot be determined with the device in its current state.</p>
 <p><strong>online</strong>&lt;br&gt;
-The chip is present, powered on and online (i.e. operational, not busy processing a request and not in an error state).</p>
+The chip is present, powered on and online <br>(i.e. operational, not busy processing a request and not in an error state).</p>
 <p><strong>busy</strong>&lt;br&gt;
-The chip is present, powered on, and busy (unable to process an Execute command at this time).</p>
+The chip is present, powered on, and busy <br>(unable to process an Execute command at this time).</p>
 <p><strong>poweredOff</strong>&lt;br&gt;
 The chip is present, but powered off (i.e. not contacted).</p>
 <p><strong>noDevice</strong>&lt;br&gt;
 A card is currently present in the device, but has no chip.</p>
 <p><strong>hwerror</strong>&lt;br&gt;
-The chip is present, but inoperable due to a hardware error that prevents it from being used (e.g. MUTE, if there is an unresponsive card in the reader).</p>
+The chip is present, but inoperable due to a hardware error that prevents it from being used <br>(e.g. MUTE, if there is an unresponsive card in the reader).</p>
 <p><strong>noCard</strong>&lt;br&gt;
 There is no card in the device.</p>
 </td>
@@ -7473,9 +7472,9 @@ This command should be issued to determine which Keys are available.</p>
     string
   </td>
   <td class="table__body__cell"></td>
-  <td class="table__body__cell"><p>String which holds the printable characters (numeric and alphanumeric keys) on the Text Terminal Unit,
+  <td class="table__body__cell"><p>String which holds the printable characters (numeric and alphanumeric keys) <br>on the Text Terminal Unit,
 e.g. “0123456789ABCabc” if those text terminal input keys are present.
-This field is not set if no keys of this type are present on the device.</p>
+<br>This field is not set if no keys of this type are present on the device.</p>
 </td>
 </tr class="table__body__row">
 
@@ -16392,18 +16391,18 @@ If none of the following attribute flags are selected then the text will be disp
     string
   </td>
   <td class="table__body__cell"></td>
-  <td class="table__body__cell"><p>String which specifies the numeric and alphanumeric keys on the Text Terminal Unit,
-e.g. &quot;12ABab&quot;, to be active during the execution of the command. Devices having a shift key interpret
-this parameter differently from those that do not have a shift key. For devices having a shift key,
-specifying only the upper case of a particular letter enables both upper and lower case of that key,
-but the device converts lower case letters to upper case in the output parameter. To enable both
+  <td class="table__body__cell"><p>String which specifies the numeric and alphanumeric keys on the Text Terminal Unit,<br>
+e.g. &quot;12ABab&quot;, to be active during the execution of the command. <br>Devices having a shift key interpret
+this parameter differently from those that do not have a shift key. For devices having a shift key,<br>
+specifying only the upper case of a particular letter enables both upper and lower case of that key,<br>
+but the device converts lower case letters to upper case in the output parameter. <br>To enable both
 upper and lower case keys, and have both upper and lower case letters returned, specify both the
-upper and lower case of the letter (e.g. &quot;12AaBb&quot;). For devices not having a shift key, specifying
-either the upper case only (e.g. &quot;12AB&quot;), or specifying both the upper and lower case of a particular letter
+upper and lower case of the letter (e.g. &quot;12AaBb&quot;). <br>For devices not having a shift key, specifying
+either the upper case only (e.g. &quot;12AB&quot;), or specifying both the upper and lower case of a particular letter<br>
 (e.g. &quot;12AaBb&quot;), enables that key and causes the device to return the upper case of the letter in the output parameter.
-For both types of device, specifying only lower case letters (e.g. &quot;12ab&quot;) produces a key invalid error.
-This parameter is a NULL if no keys of this type are active keys. activeKeys and activeUnicodeKeys are
-mutually exclusive, so activeKeys field must not be set  if activeUnicodeKeys field is not set.</p>
+For both types of device, specifying only lower case letters (e.g. &quot;12ab&quot;) produces a key invalid error.<br>
+This parameter is a NULL if no keys of this type are active keys. activeKeys and activeUnicodeKeys <br>are
+mutually exclusive, so activeKeys field must not be set <br> if activeUnicodeKeys field is not set.</p>
 </td>
 </tr class="table__body__row">
 
@@ -17762,7 +17761,7 @@ The configured set will be active until the next ReadForm command ends, at which
     string
   </td>
   <td class="table__body__cell"></td>
-  <td class="table__body__cell"><p>String which specifies the alphanumeric keys on the Text Terminal Unit, e.g. &quot;12ABab&quot;, to be active during the execution of the next ReadForm command. Devices having a shift key interpret this parameter differently from those that do not have a shift key. For devices having a shift key, specifying only the upper case of a particular letter enables both upper and lower case of that key, but the device converts lower case letters to upper case in the output parameter. To enable both upper and lower case keys, and have both upper and lower case letters returned, specify both the upper and lower case of the letter (e.g. &quot;12AaBb&quot;). For devices not having a shift key, specifying either the upper case only (e.g. &quot;12AB&quot;), or specifying both the upper and lower case of a particular letter (e.g. &quot;12AaBb&quot;), enables that key and causes the device to return the uppercase of the letter in the output parameter. For both types of device, specifying only lower case letters (e.g. &quot;12ab&quot;) produces a key invalid error.</p>
+  <td class="table__body__cell"><p>String which specifies the alphanumeric keys on the Text Terminal Unit, <br>e.g. &quot;12ABab&quot;, to be active during the execution of the next ReadForm command. <br>Devices having a shift key interpret this parameter differently from those that do not have a shift key. <br>For devices having a shift key, specifying only the upper case of a particular letter enables both upper and lower case of that key, <br>but the device converts lower case letters to upper case in the output parameter. <br>To enable both upper and lower case keys, and have both upper and lower case letters returned, specify both the upper and lower case of the letter <br>(e.g. &quot;12AaBb&quot;). For devices not having a shift key, <br>specifying either the upper case only (e.g. &quot;12AB&quot;), or specifying <br>both the upper and lower case of a particular letter (e.g. &quot;12AaBb&quot;), <br>enables that key and causes the device to return the uppercase of the letter in the output parameter. <br>For both types of device, specifying only lower case letters <br>(e.g. &quot;12ab&quot;) produces a key invalid error.</p>
 </td>
 </tr class="table__body__row">
 
