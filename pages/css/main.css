@@ -217,7 +217,7 @@ html, body {
   padding: 6px 12px;
   text-align: left;
   min-width: 100px;
-  max-width: 400px;
+  max-width: 350px;
 }
 .table__body__row {
   background: #f6f6f6;
@@ -257,7 +257,7 @@ html, body {
   max-width: 80%;
 }
 .table__body__row--with-nested--expanded .table--nested {
-  max-height: 300px;
+  max-height: 600px;
   overflow-x: scroll;
   word-break: break-word;
 }
