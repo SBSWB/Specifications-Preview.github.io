@@ -19,6 +19,7 @@ The XFS committee supplies this documentation on the latest XFS standard. This i
 - [Key Management Class](pages/KeyManagement-index.html)
 - [Keyboard Class](pages/Keyboard-index.html)
 - [PIN Pad Class](pages/PIN-index.html)
+- [Printer Class](pages/Printer-index.html)
 - [Text Terminal Class](pages/TTU-index.html)
 
 [Click here to download the full PDF](Assets/XFS4IoT Specifications Preview 0.3.pdf)
