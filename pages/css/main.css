@@ -12,7 +12,6 @@ html, body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   max-width: 70%;
-  overflow-x: scroll;
   word-break: break-word;
 }
 
