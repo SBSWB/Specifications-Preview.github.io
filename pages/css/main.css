@@ -54,7 +54,7 @@ html, body {
   background: #263238;
   padding-bottom: 60px;
   z-index: 300;
-  overflow-x: scroll;
+  overflow-y: scroll;
 }
 
 .navigation__logo {
@@ -121,7 +121,7 @@ html, body {
 
 .documentation {
   position: absolute;
-  overflow-x: scroll;
+  overflow: auto;
   word-break: break-word;
   max-width: 70%;
   left: 300px;
