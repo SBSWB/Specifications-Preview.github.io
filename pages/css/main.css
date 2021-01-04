@@ -54,7 +54,7 @@ html, body {
   background: #263238;
   padding-bottom: 60px;
   z-index: 300;
-  overflow: scroll;
+  overflow-x: scroll;
 }
 
 .navigation__logo {
@@ -85,7 +85,6 @@ html, body {
 .navigation__list {
   list-style: none;
   padding-left: 0;
-  overflow: auto;
 }
 
 .navigation__list__item-text {
@@ -345,7 +344,6 @@ pre code {
 
 .hljs {
   display: block;
-  overflow-x: scroll;
   word-break: break-word;
   padding: 0.5em;
   color: #abb2bf;
@@ -363,7 +361,6 @@ pre code {
 
 .hljs-section,.hljs-name,.hljs-selector-tag,.hljs-deletion,.hljs-subst {
   color: #e06c75;  
-  overflow-x: scroll;
   word-break: break-word;
 }
 
