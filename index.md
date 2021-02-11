@@ -22,6 +22,6 @@ The XFS committee supplies this documentation on the latest XFS standard. This i
 - [Printer Class](pages/Printer-index.html)
 - [Text Terminal Class](pages/TTU-index.html)
 
-[Click here to download the full PDF](Assets/XFS4IoT Specifications Preview 0.3.pdf)
+[Click here to download the full PDF](Assets/XFS4IoT_specifications_preview.pdf)
 
 ![CEN disclaimer](Assets/CEN copyright.PNG)
