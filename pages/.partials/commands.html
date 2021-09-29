@@ -1,7 +1,0 @@
-{% from "./command.html" import command %}
-
-<h1>Commands</h1>
-
-{% for commandName, commandDefinition in xfs4iotapi._json.commands %}
-  {{ command(commandName, commandDefinition) }}
-{% endfor %}
